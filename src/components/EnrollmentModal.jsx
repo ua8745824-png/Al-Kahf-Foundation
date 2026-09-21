@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { X, Sparkles, Send, MessageCircle, BookOpen, CheckCircle2, Shield } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { X, MessageCircle, CheckCircle2, Shield } from 'lucide-react';
 import { coursesData } from '../data/courses';
 import { foundationInfo } from '../data/foundationInfo';
 import { IslamicStarDeco } from './IslamicPattern';
+import { getLocalizedCourse } from '../utils/courseLocalization';
 
 export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "" }) {
+  const { t, i18n } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -22,19 +25,42 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
     setFormData({ ...formData, courseId: e.target.value });
   };
 
-  const selectedCourse = coursesData.find((c) => c.id === formData.courseId) || coursesData[0];
+  const rawCourse = coursesData.find((c) => c.id === formData.courseId) || coursesData[0];
+  const selectedCourse = getLocalizedCourse(rawCourse, i18n.language);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Construct WhatsApp message
-    const msg = `*Course Enrollment Inquiry - Al Kahf Foundation*\n\n` +
-      `*Course:* ${selectedCourse.title}\n` +
-      `*Name:* ${formData.name}\n` +
-      `*Gender Cohort:* ${formData.gender === 'brother' ? 'Brother (Men Cohort)' : 'Sister (Women Cohort)'}\n` +
-      `*Phone/WhatsApp:* ${formData.phone}\n` +
-      `*Email:* ${formData.email || 'Not provided'}\n` +
-      `*Additional Notes:* ${formData.notes || 'None'}`;
+    let msg = '';
+    const genderText = formData.gender === 'brother' 
+      ? (i18n.language === 'ur' ? 'شعبہ مرد / برادران' : i18n.language === 'ar' ? 'فصل الرجال (الإخوة)' : 'Brother (Men Cohort)')
+      : (i18n.language === 'ur' ? 'شعبہ خواتین / بہنیں' : i18n.language === 'ar' ? 'فصل النساء (الأخوات)' : 'Sister (Women Cohort)');
+
+    if (i18n.language === 'ur') {
+      msg = `*الکہف فاؤنڈیشن - داخلہ فارم*\n\n` +
+        `*کورس:* ${selectedCourse.title}\n` +
+        `*نام:* ${formData.name}\n` +
+        `*کلاس کا انتخاب:* ${genderText}\n` +
+        `*فون / واٹس ایپ:* ${formData.phone}\n` +
+        `*ای میل:* ${formData.email || 'فراہم نہیں کی گئی'}\n` +
+        `*اضافی تفصیل:* ${formData.notes || 'کوئی نہیں'}`;
+    } else if (i18n.language === 'ar') {
+      msg = `*مؤسسة الكهف - استمارة التسجيل في الدورة*\n\n` +
+        `*الدورة:* ${selectedCourse.title}\n` +
+        `*الاسم:* ${formData.name}\n` +
+        `*الفصل الدراسي:* ${genderText}\n` +
+        `*الهاتف / واتساب:* ${formData.phone}\n` +
+        `*البريد الإلكتروني:* ${formData.email || 'غير محدد'}\n` +
+        `*ملاحظات:* ${formData.notes || 'لا توجد'}`;
+    } else {
+      msg = `*Course Enrollment Inquiry - Al Kahf Foundation*\n\n` +
+        `*Course:* ${selectedCourse.title}\n` +
+        `*Name:* ${formData.name}\n` +
+        `*Gender Cohort:* ${genderText}\n` +
+        `*Phone/WhatsApp:* ${formData.phone}\n` +
+        `*Email:* ${formData.email || 'Not provided'}\n` +
+        `*Additional Notes:* ${formData.notes || 'None'}`;
+    }
 
     const waUrl = `https://wa.me/${foundationInfo.whatsappClean}?text=${encodeURIComponent(msg)}`;
     window.open(waUrl, '_blank');
@@ -45,27 +71,28 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-gold-500/30 overflow-hidden my-8 animate-slide-up">
+      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-gold-500/30 overflow-hidden my-8 animate-slide-up text-start">
         
         {/* Top Header Banner */}
         <div className="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 p-6 text-white relative">
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 rounded-full bg-emerald-900/80 text-emerald-200 hover:text-white hover:bg-emerald-800 transition-colors"
+            className="absolute top-5 end-5 p-2 rounded-full bg-emerald-900/80 text-emerald-200 hover:text-white hover:bg-emerald-800 transition-colors"
+            aria-label="Close"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="space-y-1">
             <div className="flex items-center gap-2 text-gold-400 text-xs font-semibold uppercase tracking-wider">
-              <IslamicStarDeco className="w-3.5 h-3.5" />
-              <span>Direct Course Enrollment</span>
+              <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+              <span>{t('enrollmentModal.directBadge')}</span>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold font-serif text-white">
-              Enroll in Al Kahf Foundation
+              {t('enrollmentModal.title')}
             </h3>
             <p className="text-xs text-emerald-200">
-              Complete this short form to connect with our admissions coordinator on WhatsApp.
+              {t('enrollmentModal.subtitle')}
             </p>
           </div>
         </div>
@@ -78,17 +105,17 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold text-slate-900">
-                Inquiry Opened in WhatsApp!
+                {t('enrollmentModal.successTitle')}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
-                Your prefilled course registration details have been transferred to WhatsApp. Please press send in WhatsApp to finalize your inquiry with our admissions team.
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                {t('enrollmentModal.successDesc')}
               </p>
               <div className="pt-2">
                 <button
                   onClick={onClose}
                   className="px-6 py-2.5 rounded-xl bg-emerald-900 text-white font-semibold text-xs"
                 >
-                  Close Window
+                  {t('enrollmentModal.closeBtn')}
                 </button>
               </div>
             </div>
@@ -98,32 +125,35 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               {/* Select Course */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Choose Course
+                  {t('enrollmentModal.chooseCourse')}
                 </label>
                 <select
                   value={formData.courseId}
                   onChange={handleCourseChange}
                   className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none text-slate-900 font-medium"
                 >
-                  {coursesData.map((course) => (
-                    <option key={course.id} value={course.id}>
-                      {course.title}
-                    </option>
-                  ))}
+                  {coursesData.map((course) => {
+                    const loc = getLocalizedCourse(course, i18n.language);
+                    return (
+                      <option key={course.id} value={course.id}>
+                        {loc.title}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
 
               {/* Name */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Full Name <span className="text-red-500">*</span>
+                  {t('enrollmentModal.fullName')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  placeholder="e.g. Brother Abdullah / Sister Aisha"
+                  placeholder={t('enrollmentModal.namePlaceholder')}
                   className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                 />
               </div>
@@ -131,7 +161,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               {/* Gender Cohort Choice */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Learning Cohort
+                  {t('enrollmentModal.learningCohort')}
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <label className={`p-2.5 rounded-xl border text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 ${
@@ -147,7 +177,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                       onChange={() => setFormData({ ...formData, gender: 'brother' })}
                       className="hidden"
                     />
-                    <span>Men's Cohort</span>
+                    <span>{t('enrollmentModal.brotherCohort')}</span>
                   </label>
 
                   <label className={`p-2.5 rounded-xl border text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 ${
@@ -163,7 +193,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                       onChange={() => setFormData({ ...formData, gender: 'sister' })}
                       className="hidden"
                     />
-                    <span>Women's Cohort</span>
+                    <span>{t('enrollmentModal.sisterCohort')}</span>
                   </label>
                 </div>
               </div>
@@ -171,7 +201,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               {/* WhatsApp Number */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  WhatsApp Number <span className="text-red-500">*</span>
+                  {t('enrollmentModal.phone')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -186,13 +216,13 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               {/* Email (Optional) */}
               <div>
                 <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                  Email Address (Optional)
+                  {t('enrollmentModal.email')}
                 </label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  placeholder="name@email.com"
+                  placeholder={t('enrollmentModal.emailPlaceholder')}
                   className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                 />
               </div>
@@ -203,15 +233,15 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                   type="submit"
                   className="w-full py-3.5 px-5 rounded-xl bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 hover:from-gold-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-md flex items-center justify-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-950" />
-                  <span>Submit & Connect on WhatsApp</span>
+                  <MessageCircle className="w-4 h-4 text-emerald-950 shrink-0" />
+                  <span>{t('enrollmentModal.submit')}</span>
                 </button>
               </div>
 
               <div className="text-center">
                 <p className="text-[11px] text-slate-400 flex items-center justify-center gap-1">
-                  <Shield className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Your privacy and contact information remain 100% confidential.</span>
+                  <Shield className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
+                  <span>{t('enrollmentModal.privacy')}</span>
                 </p>
               </div>
 

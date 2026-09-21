@@ -1,47 +1,47 @@
 import React, { useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { coursesData } from '../data/courses';
 import { foundationInfo } from '../data/foundationInfo';
 import { SITE_URL, getCourseSchema, getBreadcrumbsSchema } from '../data/seoData';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { IslamicDivider, IslamicStarDeco } from '../components/IslamicPattern';
+import { getLocalizedCourse } from '../utils/courseLocalization';
 import {
   BookOpen,
   Clock,
-  Calendar,
   Users,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
   MessageCircle,
   Sparkles,
-  ArrowRight,
   Shield,
   GraduationCap,
   HelpCircle,
   Share2,
-  Globe,
-  Award
+  Globe
 } from 'lucide-react';
 
 export default function CourseDetails({ onOpenEnrollment }) {
   const { slug } = useParams();
-  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const [openModuleIndex, setOpenModuleIndex] = useState(0);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [copied, setCopied] = useState(false);
 
   // Match course by slug, id, or alias
-  const course = coursesData.find(
+  const rawCourse = coursesData.find(
     (c) => c.slug === slug || c.id === slug || (c.aliases && c.aliases.includes(slug))
   ) || coursesData[0];
 
-  const canonicalUrl = `${SITE_URL}/courses/${course.slug}`;
+  const course = getLocalizedCourse(rawCourse, i18n.language);
+  const canonicalUrl = `${SITE_URL}/courses/${rawCourse.slug}`;
 
   const breadcrumbItems = [
-    { name: 'Courses', url: '/courses' },
-    { name: course.title, url: `/courses/${course.slug}` }
+    { name: t('courseDetails.breadcrumbCourses'), url: '/courses' },
+    { name: course.title, url: `/courses/${rawCourse.slug}` }
   ];
 
   const schemas = [
@@ -49,9 +49,17 @@ export default function CourseDetails({ onOpenEnrollment }) {
     getBreadcrumbsSchema(breadcrumbItems)
   ];
 
-  const whatsappInquiryUrl = `https://wa.me/${foundationInfo.whatsappClean}?text=${encodeURIComponent(
-    `Assalamu Alaikum, I would like to enroll in "${course.title}". Please provide the syllabus, fee details, and upcoming cohort schedule.`
-  )}`;
+  const getInquiryText = () => {
+    if (i18n.language === 'ur') {
+      return `السلام علیکم، میں الکہف فاؤنڈیشن کے کورس "${course.title}" میں داخلہ لینا چاہتا/چاہتی ہوں۔ براہِ کرم نصاب اور کلاسز کے اوقات سے آگاہ فرمائیں۔`;
+    }
+    if (i18n.language === 'ar') {
+      return `السلام عليكم، أود التسجيل في دورة "${course.title}" لدى مؤسسة الكهف. يرجى إرسال الخطة الدراسية والمواعيد المتاحة.`;
+    }
+    return `Assalamu Alaikum, I would like to enroll in "${course.title}". Please provide the syllabus, fee details, and upcoming cohort schedule.`;
+  };
+
+  const whatsappInquiryUrl = `https://wa.me/${foundationInfo.whatsappClean}?text=${encodeURIComponent(getInquiryText())}`;
 
   const toggleModule = (index) => {
     setOpenModuleIndex(openModuleIndex === index ? null : index);
@@ -76,17 +84,17 @@ export default function CourseDetails({ onOpenEnrollment }) {
   };
 
   // Other related courses
-  const otherCourses = coursesData.filter((c) => c.id !== course.id).slice(0, 3);
+  const otherCourses = coursesData.filter((c) => c.id !== rawCourse.id).slice(0, 3);
 
   return (
-    <div className="bg-sand-50 animate-fade-in">
+    <div className="bg-sand-50 animate-fade-in text-start">
       {/* Course Dynamic Page-Specific SEO & Course Schema.org JSON-LD */}
       <SEO
-        title={course.seoTitle || `${course.title} | Al Kahf Foundation`}
-        description={course.seoDescription || course.shortDescription}
+        title={`${course.title} | Al Kahf Foundation`}
+        description={course.shortDescription}
         canonical={canonicalUrl}
         keywords={`${course.title}, ${course.category}, learn ${course.title} online, Islamic education, Al Kahf Foundation`}
-        ogImage={course.image}
+        ogImage={rawCourse.image}
         schemas={schemas}
       />
 
@@ -94,8 +102,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
       <section className="relative py-16 sm:py-24 bg-emerald-950 text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src={course.image || "/images/al-kahf-foundation-islamic-education.jpg"}
-            alt={course.imageAlt || course.title}
+            src={rawCourse.image || "/images/al-kahf-foundation-islamic-education.jpg"}
+            alt={rawCourse.imageAlt || course.title}
             className="w-full h-full object-cover opacity-25 mix-blend-luminosity filter brightness-75"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-emerald-980 via-emerald-950/95 to-emerald-900/85" />
@@ -104,7 +112,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Reusable Accessible Breadcrumb Component */}
+          {/* Breadcrumbs */}
           <div className="mb-6">
             <Breadcrumbs items={breadcrumbItems} />
           </div>
@@ -116,7 +124,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
               
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="px-3 py-1 rounded-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5">
-                  <IslamicStarDeco className="w-3.5 h-3.5" />
+                  <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
                   <span>{course.category}</span>
                 </span>
                 {course.badge && (
@@ -125,18 +133,18 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   </span>
                 )}
                 <span className="px-3 py-1 rounded-full bg-emerald-800/80 text-emerald-200 text-xs">
-                  Men & Women Cohorts
+                  {t('courseDetails.menWomenCohorts')}
                 </span>
               </div>
 
-              {/* Single Primary H1 for Course Page */}
+              {/* Course Title */}
               <div className="space-y-2">
                 <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-serif leading-tight">
                   {course.title}
                 </h1>
-                {course.arabicTitle && (
+                {i18n.language !== 'ar' && rawCourse.arabicTitle && (
                   <p className="text-xl sm:text-2xl text-gold-400 font-arabic pt-1">
-                    {course.arabicTitle}
+                    {rawCourse.arabicTitle}
                   </p>
                 )}
               </div>
@@ -150,7 +158,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
                 <div className="p-3 rounded-xl bg-emerald-900/60 border border-emerald-800 backdrop-blur-sm flex items-center gap-2">
                   <Clock className="w-4 h-4 text-gold-400 shrink-0" />
                   <div>
-                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">Duration</span>
+                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">{t('courseDetails.durationLabel')}</span>
                     <span className="font-medium text-white">{course.duration}</span>
                   </div>
                 </div>
@@ -158,24 +166,26 @@ export default function CourseDetails({ onOpenEnrollment }) {
                 <div className="p-3 rounded-xl bg-emerald-900/60 border border-emerald-800 backdrop-blur-sm flex items-center gap-2">
                   <Globe className="w-4 h-4 text-gold-400 shrink-0" />
                   <div>
-                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">Language</span>
-                    <span className="font-medium text-white">{course.language}</span>
+                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">{t('courseDetails.languageLabel')}</span>
+                    <span className="font-medium text-white">
+                      {i18n.language === 'ur' ? 'اردو / انگریزی' : i18n.language === 'ar' ? 'العربية / الإنجليزية' : 'Urdu / English'}
+                    </span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-emerald-900/60 border border-emerald-800 backdrop-blur-sm flex items-center gap-2">
                   <Users className="w-4 h-4 text-gold-400 shrink-0" />
                   <div>
-                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">Audience</span>
-                    <span className="font-medium text-white">Men & Women</span>
+                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">{t('courseDetails.audienceLabel')}</span>
+                    <span className="font-medium text-white">{course.audience}</span>
                   </div>
                 </div>
 
                 <div className="p-3 rounded-xl bg-emerald-900/60 border border-emerald-800 backdrop-blur-sm flex items-center gap-2">
                   <GraduationCap className="w-4 h-4 text-gold-400 shrink-0" />
                   <div>
-                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">Method</span>
-                    <span className="font-medium text-white">Live Online</span>
+                    <span className="text-[10px] text-emerald-400 block font-semibold uppercase">{t('courseDetails.methodLabel')}</span>
+                    <span className="font-medium text-white">{t('courseDetails.methodValue')}</span>
                   </div>
                 </div>
               </div>
@@ -188,27 +198,27 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   rel="noopener noreferrer"
                   className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 hover:from-gold-400 hover:to-amber-500 text-slate-950 font-bold text-sm shadow-xl shadow-gold-950/40 hover:scale-105 transition-all flex items-center gap-2"
                 >
-                  <MessageCircle className="w-4 h-4 text-emerald-950" />
-                  <span>Enroll in {course.title}</span>
+                  <MessageCircle className="w-4 h-4 text-emerald-950 shrink-0" />
+                  <span>{t('courseDetails.enrollWhatsApp')}</span>
                 </a>
 
                 <button
-                  onClick={() => onOpenEnrollment(course.id)}
+                  onClick={() => onOpenEnrollment(rawCourse.id)}
                   className="px-6 py-3.5 rounded-xl bg-emerald-850 hover:bg-emerald-800 text-emerald-100 font-semibold text-sm border border-gold-500/30 transition-all flex items-center gap-2"
                 >
-                  <Sparkles className="w-4 h-4 text-gold-400" />
-                  <span>Online Registration Form</span>
+                  <Sparkles className="w-4 h-4 text-gold-400 shrink-0" />
+                  <span>{t('courseDetails.regFormBtn')}</span>
                 </button>
 
                 <button
                   onClick={handleShare}
                   className="p-3.5 rounded-xl bg-emerald-900/70 hover:bg-emerald-850 text-emerald-300 hover:text-white border border-emerald-800 transition-colors"
-                  title="Share this course"
+                  title={t('courseDetails.shareTitle')}
                 >
                   <Share2 className="w-4 h-4" />
                 </button>
                 {copied && (
-                  <span className="text-xs text-gold-400 font-bold animate-fade-in">Link Copied!</span>
+                  <span className="text-xs text-gold-400 font-bold animate-fade-in">{t('courseDetails.linkCopied')}</span>
                 )}
               </div>
 
@@ -219,36 +229,36 @@ export default function CourseDetails({ onOpenEnrollment }) {
               <div className="bg-white text-slate-900 rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5">
                 <div className="relative rounded-2xl overflow-hidden h-44 bg-emerald-950">
                   <img
-                    src={course.image || "/images/al-kahf-foundation-islamic-education.jpg"}
-                    alt={course.imageAlt || course.title}
+                    src={rawCourse.image || "/images/al-kahf-foundation-islamic-education.jpg"}
+                    alt={rawCourse.imageAlt || course.title}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <span className="text-xs font-bold text-gold-400">Authentic Curriculum</span>
+                  <div className="absolute bottom-3 inset-x-3 text-white">
+                    <span className="text-xs font-bold text-gold-400">{t('courseDetails.authenticCurriculum')}</span>
                     <h4 className="text-sm font-bold truncate">{course.title}</h4>
                   </div>
                 </div>
 
                 <div className="space-y-3 text-xs">
                   <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">Learning Cohorts:</span>
-                    <span className="font-bold text-slate-900">Separate Men & Women</span>
+                    <span className="text-slate-500">{t('courseDetails.learningCohorts')}</span>
+                    <span className="font-bold text-slate-900">{t('courseDetails.separateCohorts')}</span>
                   </div>
 
                   <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">Prerequisites:</span>
-                    <span className="font-bold text-slate-900">{course.prerequisites || 'None'}</span>
+                    <span className="text-slate-500">{t('courseDetails.prerequisites')}</span>
+                    <span className="font-bold text-slate-900">{course.prerequisites || t('courseDetails.none')}</span>
                   </div>
 
                   <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">Class Format:</span>
+                    <span className="text-slate-500">{t('courseDetails.classFormat')}</span>
                     <span className="font-bold text-emerald-800">{course.learningMethod}</span>
                   </div>
 
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-slate-500">Fee & Timing:</span>
-                    <span className="font-bold text-gold-700 bg-gold-50 px-2 py-0.5 rounded">Inquire on WhatsApp</span>
+                    <span className="text-slate-500">{t('courseDetails.feeTiming')}</span>
+                    <span className="font-bold text-gold-700 bg-gold-50 px-2 py-0.5 rounded">{t('courseDetails.inquireWhatsApp')}</span>
                   </div>
                 </div>
 
@@ -258,8 +268,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   rel="noopener noreferrer"
                   className="w-full py-3.5 px-4 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-bold text-center text-xs shadow flex items-center justify-center gap-2 transition-all"
                 >
-                  <MessageCircle className="w-4 h-4 text-green-400" />
-                  <span>Inquire for Upcoming Batch</span>
+                  <MessageCircle className="w-4 h-4 text-green-400 shrink-0" />
+                  <span>{t('courseDetails.inquireUpcomingBatch')}</span>
                 </a>
               </div>
             </div>
@@ -280,13 +290,13 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* 1. What You Will Learn & Objectives */}
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-gold-600" />
-                  <span>What You Will Learn</span>
+                  <Sparkles className="w-5 h-5 text-gold-600 shrink-0" />
+                  <span>{t('courseDetails.whatYouLearn')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  {course.courseBenefits?.map((benefit, idx) => (
+                  {rawCourse.courseBenefits?.map((benefit, idx) => (
                     <div
                       key={idx}
                       className="p-4 rounded-2xl bg-sand-50 border border-slate-200/80 flex items-start gap-3"
@@ -303,13 +313,13 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* 2. Who This Course Is For */}
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <Users className="w-5 h-5 text-gold-600" />
-                  <span>Who This Course Is For</span>
+                  <Users className="w-5 h-5 text-gold-600 shrink-0" />
+                  <span>{t('courseDetails.whoIsThisFor')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
 
                 <div className="space-y-2.5 pt-2">
-                  {course.whoIsThisFor?.map((audience, idx) => (
+                  {rawCourse.whoIsThisFor?.map((audience, idx) => (
                     <div
                       key={idx}
                       className="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-center gap-3 text-xs sm:text-sm text-slate-800"
@@ -325,17 +335,17 @@ export default function CourseDetails({ onOpenEnrollment }) {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-gold-600" />
-                    <span>Course Outline & Modules</span>
+                    <BookOpen className="w-5 h-5 text-gold-600 shrink-0" />
+                    <span>{t('courseDetails.courseOutline')}</span>
                   </h2>
                   <span className="text-xs text-slate-500 font-medium">
-                    {course.outline?.length || 0} Key Modules
+                    {rawCourse.outline?.length || 0} {t('courseDetails.keyModules')}
                   </span>
                 </div>
                 <IslamicDivider showArabic={false} />
 
                 <div className="space-y-3 pt-2">
-                  {course.outline?.map((mod, idx) => {
+                  {rawCourse.outline?.map((mod, idx) => {
                     const isOpen = openModuleIndex === idx;
                     return (
                       <div
@@ -344,7 +354,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
                       >
                         <button
                           onClick={() => toggleModule(idx)}
-                          className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-slate-100/60 transition-colors"
+                          className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/60 transition-colors"
                         >
                           <div className="flex items-center gap-3">
                             <span className="px-2.5 py-1 rounded-md bg-emerald-900 text-gold-300 font-bold text-xs shrink-0">
@@ -355,16 +365,16 @@ export default function CourseDetails({ onOpenEnrollment }) {
                             </span>
                           </div>
                           {isOpen ? (
-                            <ChevronUp className="w-5 h-5 text-emerald-800 shrink-0 ml-2" />
+                            <ChevronUp className="w-5 h-5 text-emerald-800 shrink-0 ms-2" />
                           ) : (
-                            <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 ml-2" />
+                            <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 ms-2" />
                           )}
                         </button>
 
                         {isOpen && (
                           <div className="p-5 pt-2 bg-white border-t border-slate-100 space-y-2 animate-fade-in">
                             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                              Module Topics:
+                              {t('courseDetails.moduleTopics')}
                             </h4>
                             <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
                               {mod.topics?.map((topic, tIdx) => (
@@ -385,8 +395,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* 4. Teacher & Faculty Info */}
               <div className="space-y-4">
                 <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-gold-600" />
-                  <span>Instructor & Faculty</span>
+                  <GraduationCap className="w-5 h-5 text-gold-600 shrink-0" />
+                  <span>{t('courseDetails.instructorFaculty')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
 
@@ -396,68 +406,70 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   </div>
                   <div className="space-y-1">
                     <h3 className="text-lg font-bold text-slate-900">
-                      {course.teacher?.name}
+                      {rawCourse.teacher?.name}
                     </h3>
                     <p className="text-xs font-semibold text-emerald-800">
-                      {course.teacher?.title}
+                      {rawCourse.teacher?.title}
                     </p>
                     <p className="text-xs text-slate-500 italic">
-                      {course.teacher?.note}
+                      {rawCourse.teacher?.note}
                     </p>
                     <span className="inline-block mt-1 text-[11px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-medium">
-                      Faculty Details Updating
+                      {t('courseDetails.facultyUpdating')}
                     </span>
                   </div>
                 </div>
               </div>
 
               {/* 5. Frequently Asked Questions */}
-              <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-gold-600" />
-                  <span>Frequently Asked Questions</span>
-                </h2>
-                <IslamicDivider showArabic={false} />
+              {rawCourse.faqs && rawCourse.faqs.length > 0 && (
+                <div className="space-y-4">
+                  <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
+                    <HelpCircle className="w-5 h-5 text-gold-600 shrink-0" />
+                    <span>{t('courseDetails.faqs')}</span>
+                  </h2>
+                  <IslamicDivider showArabic={false} />
 
-                <div className="space-y-3 pt-2">
-                  {course.faqs?.map((faq, idx) => {
-                    const isOpen = openFaqIndex === idx;
-                    return (
-                      <div
-                        key={idx}
-                        className="rounded-2xl border border-slate-200 overflow-hidden bg-sand-50/40"
-                      >
-                        <button
-                          onClick={() => toggleFaq(idx)}
-                          className="w-full p-4 sm:p-5 flex items-center justify-between text-left hover:bg-slate-100/50 transition-colors"
+                  <div className="space-y-3 pt-2">
+                    {rawCourse.faqs?.map((faq, idx) => {
+                      const isOpen = openFaqIndex === idx;
+                      return (
+                        <div
+                          key={idx}
+                          className="rounded-2xl border border-slate-200 overflow-hidden bg-sand-50/40"
                         >
-                          <span className="font-bold text-xs sm:text-sm text-slate-900">
-                            {faq.q}
-                          </span>
-                          {isOpen ? (
-                            <ChevronUp className="w-4 h-4 text-emerald-800 shrink-0 ml-2" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ml-2" />
+                          <button
+                            onClick={() => toggleFaq(idx)}
+                            className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/50 transition-colors"
+                          >
+                            <span className="font-bold text-xs sm:text-sm text-slate-900">
+                              {faq.q}
+                            </span>
+                            {isOpen ? (
+                              <ChevronUp className="w-4 h-4 text-emerald-800 shrink-0 ms-2" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ms-2" />
+                            )}
+                          </button>
+                          {isOpen && (
+                            <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fade-in">
+                              {faq.a}
+                            </div>
                           )}
-                        </button>
-                        {isOpen && (
-                          <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fade-in">
-                            {faq.a}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* 6. Bottom Course Enrollment CTA */}
               <div className="p-8 rounded-3xl bg-gradient-to-br from-emerald-900 to-emerald-950 text-white border border-gold-500/30 text-center space-y-4 shadow-xl">
                 <h3 className="text-2xl font-bold font-serif text-white">
-                  Ready to Enroll in {course.title}?
+                  {t('courseDetails.readyToEnroll')} {course.title}?
                 </h3>
-                <p className="text-xs sm:text-sm text-emerald-200 max-w-lg mx-auto">
-                  Contact our admissions team directly on WhatsApp to receive the complete schedule, study materials pack, and orientation details.
+                <p className="text-xs sm:text-sm text-emerald-200 max-w-lg mx-auto leading-relaxed">
+                  {t('courseDetails.readyDesc')}
                 </p>
                 <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
                   <a
@@ -467,13 +479,13 @@ export default function CourseDetails({ onOpenEnrollment }) {
                     className="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-gold-500 to-amber-500 text-slate-950 font-bold text-xs sm:text-sm shadow-md flex items-center justify-center gap-2"
                   >
                     <MessageCircle className="w-4 h-4" />
-                    <span>Inquire via WhatsApp: {foundationInfo.whatsapp}</span>
+                    <span>{t('courseDetails.inquireViaWhatsApp')} {foundationInfo.whatsapp}</span>
                   </a>
                   <button
-                    onClick={() => onOpenEnrollment(course.id)}
+                    onClick={() => onOpenEnrollment(rawCourse.id)}
                     className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-850 hover:bg-emerald-800 text-white font-semibold text-xs sm:text-sm border border-emerald-700"
                   >
-                    Open Registration Form
+                    {t('courseDetails.openRegForm')}
                   </button>
                 </div>
               </div>
@@ -488,26 +500,26 @@ export default function CourseDetails({ onOpenEnrollment }) {
                 
                 <div className="bg-sand-50 rounded-3xl p-6 border border-slate-200 shadow-soft-card space-y-4">
                   <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900">
-                    <Shield className="w-4 h-4 text-gold-600" />
-                    <span>Why Learn at Al Kahf</span>
+                    <Shield className="w-4 h-4 text-gold-600 shrink-0" />
+                    <span>{t('courseDetails.whyLearnTitle')}</span>
                   </div>
 
                   <ul className="space-y-2.5 text-xs text-slate-600">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                      <span>Authentic Quran & Sunnah methodology</span>
+                      <span>{t('courseDetails.r1')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                      <span>Dedicated, private cohorts for sisters</span>
+                      <span>{t('courseDetails.r2')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                      <span>Recorded video access for missed lectures</span>
+                      <span>{t('courseDetails.r3')}</span>
                     </li>
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
-                      <span>Direct scholarly Q&A interaction</span>
+                      <span>{t('courseDetails.r4')}</span>
                     </li>
                   </ul>
 
@@ -519,7 +531,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
                       className="w-full py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-xs flex items-center justify-center gap-2 shadow"
                     >
                       <MessageCircle className="w-4 h-4" />
-                      <span>WhatsApp Quick Inquiry</span>
+                      <span>{t('courseDetails.quickInquiry')}</span>
                     </a>
                   </div>
                 </div>
@@ -527,31 +539,34 @@ export default function CourseDetails({ onOpenEnrollment }) {
                 {/* Related Courses */}
                 <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft-card space-y-4">
                   <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    Other Recommended Courses
+                    {t('courseDetails.otherCourses')}
                   </h4>
 
                   <div className="space-y-3">
-                    {otherCourses.map((other) => (
-                      <Link
-                        key={other.id}
-                        to={`/courses/${other.slug}`}
-                        className="block p-3 rounded-xl bg-sand-50 hover:bg-emerald-50/60 border border-slate-200 hover:border-emerald-700 transition-all group"
-                      >
-                        <span className="text-[10px] font-bold text-gold-700 uppercase block">
-                          {other.category}
-                        </span>
-                        <h5 className="text-xs font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
-                          {other.title}
-                        </h5>
-                      </Link>
-                    ))}
+                    {otherCourses.map((other) => {
+                      const locOther = getLocalizedCourse(other, i18n.language);
+                      return (
+                        <Link
+                          key={other.id}
+                          to={`/courses/${other.slug}`}
+                          className="block p-3 rounded-xl bg-sand-50 hover:bg-emerald-50/60 border border-slate-200 hover:border-emerald-700 transition-all group"
+                        >
+                          <span className="text-[10px] font-bold text-gold-700 uppercase block">
+                            {locOther.category}
+                          </span>
+                          <h5 className="text-xs font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
+                            {locOther.title}
+                          </h5>
+                        </Link>
+                      );
+                    })}
                   </div>
 
                   <Link
                     to="/courses"
                     className="block text-center text-xs font-bold text-emerald-900 hover:underline pt-1"
                   >
-                    View All 7 Courses →
+                    {t('courseDetails.viewAllCourses')}
                   </Link>
                 </div>
 

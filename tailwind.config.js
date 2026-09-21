@@ -56,7 +56,8 @@ export default {
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
         serif: ['"Amiri"', '"Cinzel"', 'Georgia', 'serif'],
-        arabic: ['"Amiri"', '"Scheherazade New"', 'Traditional Arabic', 'serif'],
+        arabic: ['"Noto Sans Arabic"', '"Amiri"', '"Scheherazade New"', 'sans-serif'],
+        urdu: ['"Noto Nastaliq Urdu"', '"Amiri"', 'serif'],
         heading: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       backgroundImage: {

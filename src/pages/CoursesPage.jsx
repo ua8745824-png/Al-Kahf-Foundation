@@ -1,14 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { staticSeoData, getBreadcrumbsSchema } from '../data/seoData';
+import { getLocalizedSeoData, getBreadcrumbsSchema } from '../data/seoData';
 import Courses from '../components/Courses';
 import FeaturedCourse from '../components/FeaturedCourse';
 import { IslamicStarDeco } from '../components/IslamicPattern';
 
 export default function CoursesPage({ onOpenEnrollment }) {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const seo = getLocalizedSeoData('courses', lang);
+
   const breadcrumbItems = [
-    { name: 'Islamic Courses', url: '/courses' }
+    { name: t('nav.courses'), url: '/courses' }
   ];
 
   const schemas = [
@@ -16,13 +21,13 @@ export default function CoursesPage({ onOpenEnrollment }) {
   ];
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in text-start">
       <SEO
-        title={staticSeoData.courses.title}
-        description={staticSeoData.courses.description}
-        canonical={staticSeoData.courses.canonical}
-        keywords={staticSeoData.courses.keywords}
-        ogImage={staticSeoData.courses.ogImage}
+        title={seo.title}
+        description={seo.description}
+        canonical={seo.canonical}
+        keywords={seo.keywords}
+        ogImage={seo.ogImage}
         schemas={schemas}
       />
 
@@ -35,16 +40,16 @@ export default function CoursesPage({ onOpenEnrollment }) {
           </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider">
-            <IslamicStarDeco className="w-3.5 h-3.5" />
-            <span>Structured Academic Catalog</span>
+            <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+            <span>{t('courses.badge')}</span>
           </div>
           
           <h1 className="text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight">
-            Islamic Courses Online
+            {t('courses.heading')}
           </h1>
           
-          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto">
-            Browse our authentic Islamic courses designed for men and women. Select a course to view detailed syllabus, learning outcomes, and cohort schedules.
+          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            {t('courses.subheading')}
           </p>
         </div>
       </section>

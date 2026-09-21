@@ -1,15 +1,19 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { staticSeoData, getOrganizationSchema, getBreadcrumbsSchema } from '../data/seoData';
+import { getLocalizedSeoData, getOrganizationSchema, getBreadcrumbsSchema } from '../data/seoData';
 import Contact from '../components/Contact';
 import { IslamicStarDeco, IslamicDivider } from '../components/IslamicPattern';
-import { MessageCircle, Mail, Clock, HelpCircle, MapPin, CheckCircle2 } from 'lucide-react';
-import { foundationInfo } from '../data/foundationInfo';
+import { HelpCircle } from 'lucide-react';
 
 export default function ContactPage() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const seo = getLocalizedSeoData('contact', lang);
+
   const breadcrumbItems = [
-    { name: 'Contact Us', url: '/contact' }
+    { name: t('nav.contact'), url: '/contact' }
   ];
 
   const schemas = [
@@ -17,7 +21,41 @@ export default function ContactPage() {
     getBreadcrumbsSchema(breadcrumbItems)
   ];
 
-  const contactFaqs = [
+  const contactFaqs = lang === 'ur' ? [
+    {
+      q: "میں کسی کورس میں داخلہ کیسے حاصل کر سکتا/سکتی ہوں؟",
+      a: "آپ کسی بھی کورس کے صفحے پر 'سجّل الآن' یا 'Enroll Now' پر کلک کر سکتے ہیں، یا ہمارے واٹس ایپ کوآرڈینیٹر (+92 301 4226909) پر براہِ راست رابطہ کر سکتے ہیں۔"
+    },
+    {
+      q: "کیا کلاسز مختلف ٹائم زونز کے طلبہ کے لیے موزوں ہیں؟",
+      a: "جی ہاں، ہمارے پاس صبح، شام اور ویک اینڈ کے متعدد اوقات موجود ہیں، نیز اگر کوئی لائیو کلاس رہ جائے تو مکمل ریکارڈنگز بھی دستیاب ہوتی ہیں۔"
+    },
+    {
+      q: "خواتین کی کلاسز کا نظام کس طرح ہوتا ہے؟",
+      a: "خواتین کی کلاسز کے لیے الگ ورچوئل فصول، معلمات اور مکمل باحجاب و نجی ماحول فراہم کیا جاتا ہے۔"
+    },
+    {
+      q: "فیس کی ادائیگی کے کیا طریقے دستیاب ہیں؟",
+      a: "داخلے کی تصدیق کے وقت ہمارا ایڈمیشن کوآرڈینیٹر مقامی اور بین الاقوامی طلبہ کے لیے آسان اور محفوظ ادائیگی کی تفصیلات فراہم کرے گا۔"
+    }
+  ] : lang === 'ar' ? [
+    {
+      q: "كيف يمكنني التسجيل في إحدى الدورات؟",
+      a: "يمكنك الضغط على زر 'سجّل الآن' في أي صفحة دورة، أو مراسلة منسق القبول عبر واتساب مباشرة (+92 301 4226909) لتأكيد تسجيلك."
+    },
+    {
+      q: "هل تناسب مواعيد الفصول الطلاب من مختلف الدول وفروق التوقيت؟",
+      a: "نعم، نوفر فترات صباحية ومسائية متعددة بالإضافة إلى تسجيلات كاملة ومؤرشفة لكافة الدروس في حال تعذر الحضور المباشر."
+    },
+    {
+      q: "كيف يتم تنظيم فصول الأخوات والنساء؟",
+      a: "تُدار فصول النساء في بيئة تعليمية خاصة تراعي الحشمة والخصوصية التامة بإشراف معلمات متخصصات."
+    },
+    {
+      q: "ما هي وسائل الدفع والرسوم المتاحة؟",
+      a: "سيوفر منسق القبول خيارات دفع إلكترونية ميسرة وآمنة للطلاب المحليين والدوليين عند إتمام طلب التسجيل."
+    }
+  ] : [
     {
       q: "How do I register for a course?",
       a: "You can click on 'Enroll Now' on any course page or message our WhatsApp coordinator directly at +92 301 4226909 with your desired course."
@@ -37,13 +75,13 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in text-start">
       <SEO
-        title={staticSeoData.contact.title}
-        description={staticSeoData.contact.description}
-        canonical={staticSeoData.contact.canonical}
-        keywords={staticSeoData.contact.keywords}
-        ogImage={staticSeoData.contact.ogImage}
+        title={seo.title}
+        description={seo.description}
+        canonical={seo.canonical}
+        keywords={seo.keywords}
+        ogImage={seo.ogImage}
         schemas={schemas}
       />
 
@@ -56,16 +94,16 @@ export default function ContactPage() {
           </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider">
-            <IslamicStarDeco className="w-3.5 h-3.5" />
-            <span>Admissions & Support</span>
+            <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+            <span>{t('contact.supportBadge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight">
-            Contact Al Kahf Foundation
+            {t('contact.pageHeading')}
           </h1>
 
-          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto">
-            We are here to assist you with course inquiries, enrollment guidance, schedules, and spiritual learning paths.
+          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            {t('contact.pageDescription')}
           </p>
         </div>
       </section>
@@ -79,11 +117,11 @@ export default function ContactPage() {
           
           <div className="text-center space-y-2">
             <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-serif">
-              Common Admissions Questions
+              {t('contact.faqHeading')}
             </h2>
             <IslamicDivider showArabic={false} />
             <p className="text-xs sm:text-sm text-slate-600">
-              Quick answers regarding enrollment, schedule flexibility, and online class formats.
+              {t('contact.faqSubheading')}
             </p>
           </div>
 
@@ -91,13 +129,13 @@ export default function ContactPage() {
             {contactFaqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-sand-50 border border-slate-200/90 space-y-2"
+                className="p-6 rounded-2xl bg-sand-50 border border-slate-200/90 space-y-2 text-start"
               >
                 <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2">
                   <HelpCircle className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                   <span>{faq.q}</span>
                 </h3>
-                <p className="text-xs text-slate-600 leading-relaxed pl-6">
+                <p className="text-xs text-slate-600 leading-relaxed ps-6">
                   {faq.a}
                 </p>
               </div>

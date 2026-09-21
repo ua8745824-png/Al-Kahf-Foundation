@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ChevronRight, Home } from 'lucide-react';
-import { SITE_URL } from '../data/seoData';
 
 export default function Breadcrumbs({ items }) {
+  const { t } = useTranslation();
   if (!items || items.length === 0) return null;
 
-  const allItems = [{ name: 'Home', url: '/' }, ...items];
+  const allItems = [{ name: t('nav.home'), url: '/' }, ...items];
 
   return (
     <nav
@@ -34,7 +35,7 @@ export default function Breadcrumbs({ items }) {
                   itemProp="item"
                   className="flex items-center gap-1 hover:text-gold-300 transition-colors"
                 >
-                  <Home className="w-3.5 h-3.5" />
+                  <Home className="w-3.5 h-3.5 shrink-0" />
                   <span itemProp="name">{item.name}</span>
                 </Link>
               ) : isLast ? (
@@ -58,7 +59,7 @@ export default function Breadcrumbs({ items }) {
               <meta itemProp="position" content={String(index + 1)} />
 
               {!isLast && (
-                <ChevronRight className="w-3 h-3 text-emerald-600 shrink-0" aria-hidden="true" />
+                <ChevronRight className="w-3 h-3 text-emerald-600 rtl:rotate-180 shrink-0" aria-hidden="true" />
               )}
             </li>
           );

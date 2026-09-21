@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
 import HadithBanner from './components/HadithBanner';
 import Footer from './components/Footer';
@@ -20,6 +21,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Elegant spiritual page loading fallback
 function PageLoader() {
+  const { t } = useTranslation();
   return (
     <div className="min-h-[60vh] flex items-center justify-center bg-sand-50">
       <div className="text-center space-y-3">
@@ -27,7 +29,7 @@ function PageLoader() {
           <IslamicStarDeco className="w-6 h-6 text-gold-400" />
         </div>
         <p className="text-xs font-semibold uppercase tracking-widest text-emerald-950 font-serif">
-          Al Kahf Foundation
+          {t('brand.fullName')}
         </p>
       </div>
     </div>

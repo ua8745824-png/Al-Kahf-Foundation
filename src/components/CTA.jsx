@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, MessageCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { BookOpen, MessageCircle, ArrowRight } from 'lucide-react';
 import { IslamicStarDeco } from './IslamicPattern';
 import { foundationInfo } from '../data/foundationInfo';
 
 export default function CTA({ onOpenEnrollment }) {
+  const { t } = useTranslation();
+
   return (
     <section className="py-20 bg-emerald-950 text-white relative overflow-hidden">
       {/* Background Islamic Accents */}
@@ -15,18 +18,18 @@ export default function CTA({ onOpenEnrollment }) {
         
         {/* Top Ornament */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-900 border border-gold-500/40 text-gold-300 text-xs font-semibold uppercase tracking-wider">
-          <IslamicStarDeco className="w-4 h-4 text-gold-400" />
-          <span>Start Your Spiritual Transformation</span>
+          <IslamicStarDeco className="w-4 h-4 text-gold-400 shrink-0" />
+          <span>{t('cta.badge')}</span>
         </div>
 
         {/* Heading */}
         <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-serif leading-tight">
-          Begin Your Journey of Islamic Learning
+          {t('cta.heading')}
         </h2>
 
         {/* Supporting Text */}
         <p className="text-base sm:text-lg text-emerald-100/90 max-w-2xl mx-auto font-normal leading-relaxed">
-          Take the first step toward gaining authentic Islamic knowledge. Join dedicated cohorts for men and women with live scholar guidance.
+          {t('cta.description')}
         </p>
 
         {/* Action Buttons */}
@@ -35,30 +38,30 @@ export default function CTA({ onOpenEnrollment }) {
             to="/courses"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 hover:from-gold-400 hover:to-amber-500 text-slate-950 font-bold text-base shadow-xl shadow-gold-950/40 hover:scale-105 transition-all"
           >
-            <BookOpen className="w-5 h-5 text-emerald-950" />
-            <span>Explore Courses</span>
-            <ArrowRight className="w-4 h-4 text-emerald-950" />
+            <BookOpen className="w-5 h-5 text-emerald-950 shrink-0" />
+            <span>{t('cta.exploreBtn')}</span>
+            <ArrowRight className="w-4 h-4 text-emerald-950 rtl:rotate-180 shrink-0" />
           </Link>
 
           <Link
             to="/contact"
             className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-emerald-900/80 hover:bg-emerald-850 text-white font-semibold text-base border border-gold-500/30 hover:border-gold-400/60 transition-all"
           >
-            <MessageCircle className="w-5 h-5 text-gold-400" />
-            <span>Contact Us</span>
+            <MessageCircle className="w-5 h-5 text-gold-400 shrink-0" />
+            <span>{t('cta.contactBtn')}</span>
           </Link>
         </div>
 
         {/* Admissions Coordinator Direct Notice */}
         <div className="pt-4 text-xs text-emerald-300/80">
-          <span>Need guidance selecting the right course? Reach our coordinator directly at </span>
+          <span>{t('cta.needGuidance')}{' '}</span>
           <a
             href={foundationInfo.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gold-400 font-bold underline hover:text-gold-300 ml-1"
+            className="text-gold-400 font-bold underline hover:text-gold-300 ms-1"
           >
-            {foundationInfo.whatsapp} (WhatsApp)
+            {foundationInfo.whatsapp} ({t('cta.whatsappLink')})
           </a>
         </div>
 

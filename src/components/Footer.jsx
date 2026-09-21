@@ -1,32 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MessageCircle, Mail, Phone, Heart, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { MessageCircle, Mail } from 'lucide-react';
 import { IslamicStarDeco } from './IslamicPattern';
 import { foundationInfo } from '../data/foundationInfo';
+import { coursesData } from '../data/courses';
+import { getLocalizedCourse } from '../utils/courseLocalization';
 
 export default function Footer() {
+  const { t, i18n } = useTranslation();
+
   const quickLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Courses', path: '/courses' },
-    { name: 'Programs', path: '/programs' },
-    { name: 'Teachers & Scholars', path: '/teachers' },
-    { name: 'Why Al Kahf', path: '/why-us' },
-    { name: 'Contact', path: '/contact' },
+    { name: t('nav.home'), path: '/' },
+    { name: t('nav.about'), path: '/about' },
+    { name: t('nav.courses'), path: '/courses' },
+    { name: t('nav.programs'), path: '/programs' },
+    { name: t('nav.teachers'), path: '/teachers' },
+    { name: t('nav.whyUs'), path: '/why-us' },
+    { name: t('nav.contact'), path: '/contact' },
   ];
 
-  const courseLinks = [
-    { name: 'Islamic History & Ideological War', path: '/courses/islamic-history-and-ideological-war' },
-    { name: 'Ramadan Course', path: '/courses/ramadan-course' },
-    { name: 'Seerah Course', path: '/courses/seerah-course' },
-    { name: 'Sirat-ul-Mustaqeem Course', path: '/courses/sirat-ul-mustaqeem-course' },
-    { name: 'Hajj Course', path: '/courses/hajj-course' },
-    { name: 'Umrah Course', path: '/courses/umrah-course' },
-    { name: 'Namaz Course', path: '/courses/namaz-course' },
+  const featuredCourseSlugs = [
+    'noorani-qaida',
+    'quran-reading-with-tajweed',
+    'quran-with-translation',
+    'hifz-ul-quran',
+    'islamic-history-ideological-war',
+    'namaz',
+    'ramadan',
+    'hajj'
   ];
+
+  const footerCourses = coursesData.filter((c) =>
+    featuredCourseSlugs.includes(c.id) || featuredCourseSlugs.includes(c.slug)
+  ).slice(0, 7);
 
   return (
-    <footer className="bg-emerald-980 text-emerald-100 relative overflow-hidden border-t-2 border-gold-500/30">
+    <footer className="bg-emerald-980 text-emerald-100 relative overflow-hidden border-t-2 border-gold-500/30 text-start">
       
       {/* Background Geometric Watermark */}
       <div className="absolute inset-0 bg-islamic-stars-dark opacity-20 pointer-events-none" />
@@ -40,43 +50,43 @@ export default function Footer() {
           {/* Brand Column (Col 1-4) */}
           <div className="lg:col-span-4 space-y-4">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-emerald-900 border border-gold-500/50 flex items-center justify-center p-1.5">
-                <svg viewBox="0 0 100 100" fill="none" className="w-full h-full">
-                  <path d="M25 75V45C25 31.1929 36.1929 20 50 20C63.8071 20 75 31.1929 75 45V75" stroke="#d4af37" strokeWidth="6" strokeLinecap="round" />
-                  <path d="M50 42C44 37 34 37 32 38V62C34 61 44 61 50 66C56 61 66 61 68 62V38C66 37 56 37 50 42Z" fill="#d4af37" fillOpacity="0.25" stroke="#d4af37" strokeWidth="6" />
-                  <circle cx="50" cy="30" r="5" fill="#f5e098" />
-                </svg>
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-emerald-900 border border-gold-500/50 flex items-center justify-center p-1.5 shrink-0 shadow-md group-hover:border-gold-400 group-hover:scale-105 transition-all">
+                <img
+                  src="/images/logo-emblem.png"
+                  alt="Al Kahf Foundation"
+                  className="w-full h-full object-contain filter drop-shadow"
+                />
               </div>
               <div>
                 <span className="text-xl font-bold tracking-tight text-white group-hover:text-gold-300 transition-colors">
-                  Al Kahf Foundation
+                  {t('brand.name')} <span className="text-gold-400">{t('brand.suffix')}</span>
                 </span>
-                <p className="text-[11px] text-emerald-300/80 tracking-widest uppercase font-medium">
-                  {foundationInfo.tagline}
+                <p className="text-[11px] text-emerald-300/80 uppercase font-medium">
+                  {t('brand.tagline')}
                 </p>
               </div>
             </Link>
 
             <p className="text-xs sm:text-sm text-emerald-200/80 leading-relaxed max-w-sm">
-              An Islamic educational organization offering structured online courses and awareness programs for men and women, rooted in the authentic Quran and Sunnah.
+              {t('footer.aboutText')}
             </p>
 
             {/* Micro Pattern Ornament */}
             <div className="flex items-center gap-2 pt-2 text-gold-400 text-xs">
-              <IslamicStarDeco className="w-3.5 h-3.5" />
-              <span className="font-arabic text-sm text-gold-300">مؤسسة الكهف للتعليم الإسلامي</span>
-              <IslamicStarDeco className="w-3.5 h-3.5" />
+              <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+              <span className="font-arabic text-sm text-gold-300">{t('footer.arabicSubtitle')}</span>
+              <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
             </div>
           </div>
 
           {/* Quick Links Column (Col 5-6) */}
           <div className="lg:col-span-2 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400">
-              Quick Links
+              {t('footer.quickLinksTitle')}
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
               {quickLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.path}>
                   <Link
                     to={link.path}
                     className="text-emerald-200/80 hover:text-gold-300 transition-colors flex items-center gap-1.5"
@@ -92,33 +102,36 @@ export default function Footer() {
           {/* Courses Column (Col 7-9) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400">
-              Our Islamic Courses
+              {t('footer.coursesTitle')}
             </h4>
             <ul className="space-y-2 text-xs sm:text-sm">
-              {courseLinks.map((course) => (
-                <li key={course.name}>
-                  <Link
-                    to={course.path}
-                    className="text-emerald-200/80 hover:text-gold-300 transition-colors flex items-center gap-1.5"
-                  >
-                    <span className="text-emerald-600">›</span>
-                    <span className="truncate">{course.name}</span>
-                  </Link>
-                </li>
-              ))}
+              {footerCourses.map((c) => {
+                const loc = getLocalizedCourse(c, i18n.language);
+                return (
+                  <li key={c.id}>
+                    <Link
+                      to={`/courses/${c.slug}`}
+                      className="text-emerald-200/80 hover:text-gold-300 transition-colors flex items-center gap-1.5"
+                    >
+                      <span className="text-emerald-600">›</span>
+                      <span className="truncate">{loc.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
           {/* Contact Column (Col 10-12) */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400">
-              Official Contact
+              {t('footer.officialContact')}
             </h4>
             
             <div className="space-y-2.5 text-xs text-emerald-200/90">
               <div>
                 <span className="text-[11px] text-emerald-400 uppercase tracking-wider block font-bold">
-                  WhatsApp (Direct Admissions):
+                  {t('footer.admissionsLabel')}
                 </span>
                 <a
                   href={foundationInfo.whatsappUrl}
@@ -133,7 +146,7 @@ export default function Footer() {
 
               <div>
                 <span className="text-[11px] text-emerald-400 uppercase tracking-wider block font-bold">
-                  Email:
+                  {t('footer.emailLabel')}
                 </span>
                 <a
                   href={foundationInfo.emailUrl}
@@ -148,21 +161,21 @@ export default function Footer() {
             {/* Social Icons Bar */}
             <div className="pt-3">
               <span className="text-[10px] uppercase font-bold text-emerald-400 block mb-2">
-                Connect With Us
+                {t('footer.connectLabel')}
               </span>
               <div className="flex items-center gap-2">
                 <a
                   href={foundationInfo.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-lg bg-emerald-900 hover:bg-emerald-800 text-green-400 flex items-center justify-center border border-emerald-700/60 transition-colors"
+                  className="w-8 h-8 rounded-lg bg-emerald-900 hover:bg-emerald-850 text-green-400 flex items-center justify-center border border-emerald-700/60 transition-colors"
                   title="WhatsApp Chat"
                 >
                   <MessageCircle className="w-4 h-4" />
                 </a>
                 <a
                   href={foundationInfo.emailUrl}
-                  className="w-8 h-8 rounded-lg bg-emerald-900 hover:bg-emerald-800 text-gold-400 flex items-center justify-center border border-emerald-700/60 transition-colors"
+                  className="w-8 h-8 rounded-lg bg-emerald-900 hover:bg-emerald-850 text-gold-400 flex items-center justify-center border border-emerald-700/60 transition-colors"
                   title="Email Us"
                 >
                   <Mail className="w-4 h-4" />
@@ -188,11 +201,11 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright & Subtle Geometric Vector */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-emerald-400/80">
-          <p>© 2026 Al Kahf Foundation. All Rights Reserved.</p>
+          <p>{t('footer.copyright')}</p>
           
           <div className="flex items-center gap-2 text-gold-500/60 text-[11px]">
             <IslamicStarDeco className="w-3 h-3" />
-            <span>Dedicated to spreading authentic Islamic knowledge</span>
+            <span>{t('footer.bottomMotto')}</span>
             <IslamicStarDeco className="w-3 h-3" />
           </div>
         </div>

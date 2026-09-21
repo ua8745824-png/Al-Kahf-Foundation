@@ -1,18 +1,22 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Mail, Sparkles, MessageCircle } from 'lucide-react';
 import { foundationInfo } from '../data/foundationInfo';
 
 export default function HadithBanner() {
+  const { t } = useTranslation();
+
   return (
     <div className="bg-emerald-950 text-emerald-100 text-xs border-b border-emerald-850/60 overflow-hidden">
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-1.5 sm:py-2 flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-2 text-[11px] sm:text-xs">
         
         {/* Spiritual Hadith Quote */}
-        <div className="flex items-center gap-1.5 text-center sm:text-left truncate max-w-full">
+        <div className="flex items-center gap-1.5 text-center sm:text-start truncate max-w-full">
           <Sparkles className="w-3 h-3 text-gold-400 animate-pulse shrink-0" />
           <p className="text-emerald-200/90 font-light truncate">
-            &ldquo;Whoever seeks a path to knowledge, Allah eases for him the path to Paradise.&rdquo;
-            <span className="text-gold-400/80 ml-1 text-[10px] hidden sm:inline">(Muslim)</span>
+            <span className="text-gold-400 font-medium me-1">{t('hadithBanner.wisdomLabel')}</span>
+            <span>&ldquo;{t('hadithBanner.quote')}&rdquo;</span>
+            <span className="text-gold-400/80 ms-1 text-[10px] hidden sm:inline">{t('hadithBanner.reference')}</span>
           </p>
         </div>
 

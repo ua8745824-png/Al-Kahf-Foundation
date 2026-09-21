@@ -1,15 +1,20 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { staticSeoData, getBreadcrumbsSchema } from '../data/seoData';
+import { getLocalizedSeoData, getBreadcrumbsSchema } from '../data/seoData';
 import Teachers from '../components/Teachers';
 import WhyChooseUs from '../components/WhyChooseUs';
 import CTA from '../components/CTA';
 import { IslamicStarDeco } from '../components/IslamicPattern';
 
 export default function TeachersPage({ onOpenEnrollment }) {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const seo = getLocalizedSeoData('teachers', lang);
+
   const breadcrumbItems = [
-    { name: 'Teachers & Scholars', url: '/teachers' }
+    { name: t('nav.teachers'), url: '/teachers' }
   ];
 
   const schemas = [
@@ -17,13 +22,13 @@ export default function TeachersPage({ onOpenEnrollment }) {
   ];
 
   return (
-    <div className="animate-fade-in">
+    <div className="animate-fade-in text-start">
       <SEO
-        title={staticSeoData.teachers.title}
-        description={staticSeoData.teachers.description}
-        canonical={staticSeoData.teachers.canonical}
-        keywords={staticSeoData.teachers.keywords}
-        ogImage={staticSeoData.teachers.ogImage}
+        title={seo.title}
+        description={seo.description}
+        canonical={seo.canonical}
+        keywords={seo.keywords}
+        ogImage={seo.ogImage}
         schemas={schemas}
       />
 
@@ -36,16 +41,16 @@ export default function TeachersPage({ onOpenEnrollment }) {
           </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider">
-            <IslamicStarDeco className="w-3.5 h-3.5" />
-            <span>Academic Faculty & Instructors</span>
+            <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+            <span>{t('teachers.facultyBadge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight">
-            Our Teachers & Scholars
+            {t('teachers.heading')}
           </h1>
 
-          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto">
-            Learn from authentic, compassionate instructors dedicated to communicating Islamic sciences with scholarly precision and contemporary wisdom.
+          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            {t('teachers.description')}
           </p>
         </div>
       </section>

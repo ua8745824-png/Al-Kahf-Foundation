@@ -24,6 +24,29 @@
     overflow-x: hidden;
     max-width: 100vw;
     position: relative;
+    transition: letter-spacing 0.2s ease;
+  }
+
+  /* Urdu Typography */
+  html[lang="ur"],
+  html[lang="ur"] body {
+    font-family: 'Noto Nastaliq Urdu', 'Amiri', 'Plus Jakarta Sans', serif;
+    line-height: 1.9;
+  }
+  html[lang="ur"] h1,
+  html[lang="ur"] h2,
+  html[lang="ur"] h3,
+  html[lang="ur"] h4,
+  html[lang="ur"] h5,
+  html[lang="ur"] h6 {
+    line-height: 1.7;
+  }
+
+  /* Arabic Typography */
+  html[lang="ar"],
+  html[lang="ar"] body {
+    font-family: 'Noto Sans Arabic', 'Amiri', 'Scheherazade New', 'Plus Jakarta Sans', sans-serif;
+    line-height: 1.75;
   }
 
   /* Prevent iOS input zoom and ensure smooth touch scrolling */

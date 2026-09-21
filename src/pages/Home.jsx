@@ -1,6 +1,7 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
-import { staticSeoData, getOrganizationSchema, getWebSiteSchema } from '../data/seoData';
+import { getLocalizedSeoData, getOrganizationSchema, getWebSiteSchema } from '../data/seoData';
 import Hero from '../components/Hero';
 import TrustSection from '../components/TrustSection';
 import About from '../components/About';
@@ -16,6 +17,9 @@ import CTA from '../components/CTA';
 import Contact from '../components/Contact';
 
 export default function Home({ onOpenEnrollment }) {
+  const { i18n } = useTranslation();
+  const seo = getLocalizedSeoData('home', i18n.language);
+
   const schemas = [
     getOrganizationSchema(),
     getWebSiteSchema()
@@ -23,13 +27,13 @@ export default function Home({ onOpenEnrollment }) {
 
   return (
     <div>
-      {/* Home Dynamic SEO Metadata & JSON-LD Schemas */}
+      {/* Home Multilingual SEO Metadata & JSON-LD Schemas */}
       <SEO
-        title={staticSeoData.home.title}
-        description={staticSeoData.home.description}
-        canonical={staticSeoData.home.canonical}
-        keywords={staticSeoData.home.keywords}
-        ogImage={staticSeoData.home.ogImage}
+        title={seo.title}
+        description={seo.description}
+        canonical={seo.canonical}
+        keywords={seo.keywords}
+        ogImage={seo.ogImage}
         schemas={schemas}
       />
 

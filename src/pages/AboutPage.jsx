@@ -1,16 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { staticSeoData, getOrganizationSchema, getBreadcrumbsSchema } from '../data/seoData';
-import { BookOpen, ShieldCheck, Heart, Users, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import { getLocalizedSeoData, getOrganizationSchema, getBreadcrumbsSchema } from '../data/seoData';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 import { IslamicDivider, IslamicStarDeco } from '../components/IslamicPattern';
-import { foundationInfo } from '../data/foundationInfo';
 import CTA from '../components/CTA';
 
 export default function AboutPage({ onOpenEnrollment }) {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+  const seo = getLocalizedSeoData('about', lang);
+
   const breadcrumbItems = [
-    { name: 'About Us', url: '/about' }
+    { name: t('nav.about'), url: '/about' }
   ];
 
   const schemas = [
@@ -18,14 +21,53 @@ export default function AboutPage({ onOpenEnrollment }) {
     getBreadcrumbsSchema(breadcrumbItems)
   ];
 
+  const disciplines = [
+    {
+      name: lang === 'ur' ? 'قرآن و تجوید' : lang === 'ar' ? 'القرآن والتجويد' : 'Quran & Tajweed',
+      desc: lang === 'ur' ? 'تلاوت، حفظ اور مخارج کی تصحیح' : lang === 'ar' ? 'التلاوة، الحفظ وضبط مخارج الحروف' : 'Recitation, memorization and foundational Tajweed rules.'
+    },
+    {
+      name: lang === 'ur' ? 'تفسیر و ترجمہ' : lang === 'ar' ? 'التفسير ومعاني القرآن' : 'Tafseer & Translation',
+      desc: lang === 'ur' ? 'قرآنی آیات کا فہم، ترجمہ اور تدبر' : lang === 'ar' ? 'فهم معاني الآيات وأسباب النزول والتدبر' : 'Word-by-word translation and classical commentary.'
+    },
+    {
+      name: lang === 'ur' ? 'علوم الحدیث' : lang === 'ar' ? 'علوم الحديث الشريف' : 'Hadith Sciences',
+      desc: lang === 'ur' ? 'احادیثِ مبارکہ کا فہم اور اخلاقی رہنمائی' : lang === 'ar' ? 'شرح أحاديث النبي ﷺ واستنباط الآداب النبوية' : 'Authentic Sunnah, prophetic sayings, and moral insights.'
+    },
+    {
+      name: lang === 'ur' ? 'تاریخِ اسلام و فکری چیلنجز' : lang === 'ar' ? 'التاريخ والفكر الإسلامي' : 'Islamic History & Ideology',
+      desc: lang === 'ur' ? 'مسلم تہذیب کے عروج و زوال کا تجزیہ' : lang === 'ar' ? 'دراسة محطات التاريخ الإسلامي وتفكيك الشبهات' : 'Civilizational milestones and modern intellectual challenges.'
+    },
+    {
+      name: lang === 'ur' ? 'سیرت النبی ﷺ' : lang === 'ar' ? 'السيرة النبوية العطرة' : 'Seerah Nabawiyyah',
+      desc: lang === 'ur' ? 'حیاتِ طیبہ اور نبوی حکمتوں کا مطالعہ' : lang === 'ar' ? 'دراسة حياة المصطفى ﷺ والاقتداء بهديه الشريف' : 'The blessed life of the Prophet ﷺ and prophetic leadership.'
+    },
+    {
+      name: lang === 'ur' ? 'فقہ و روزمرہ مسائل' : lang === 'ar' ? 'الفقه الإسلامي الميسر' : 'Fiqh & Daily Rulings',
+      desc: lang === 'ur' ? 'طہارت، عبادات اور معاملات کے احکام' : lang === 'ar' ? 'أحكام العبادات والمعاملات والحلال والحرام' : 'Practical rulings for worship, financial integrity, and family.'
+    },
+    {
+      name: lang === 'ur' ? 'نماز و عبادات' : lang === 'ar' ? 'فقه الصلاة والخشوع' : 'Namaz & Ibadah',
+      desc: lang === 'ur' ? 'سنت کے مطابق نماز اور خشوع کی تربیت' : lang === 'ar' ? 'إتقان صفة الصلاة المسنونة وتحصيل الخشوع' : 'Mastering Salah postures, translations, and Khushu.'
+    },
+    {
+      name: lang === 'ur' ? 'رمضان و احکامِ صوم' : lang === 'ar' ? 'أحكام الصيام ورمضان' : 'Ramadan & Fasting',
+      desc: lang === 'ur' ? 'ماہِ مبارک کی روحانی و فقہی تیاری' : lang === 'ar' ? 'الاستعداد الروحي والفقهي للشهر الفضيل' : 'Intensive pre-Ramadan preparation and Quranic goals.'
+    },
+    {
+      name: lang === 'ur' ? 'رہنمائے حج و عمرہ' : lang === 'ar' ? 'مناسك الحج والعمرة' : 'Hajj & Umrah Guidance',
+      desc: lang === 'ur' ? 'حج و عمرہ کا تصویری و عملی طریقہ کار' : lang === 'ar' ? 'دليل عملي ومصور لأداء المناسك على هدي السنة' : 'Step-by-step visual roadmap for sacred pilgrimages.'
+    }
+  ];
+
   return (
-    <div className="bg-sand-50 animate-fade-in">
+    <div className="bg-sand-50 animate-fade-in text-start">
       <SEO
-        title={staticSeoData.about.title}
-        description={staticSeoData.about.description}
-        canonical={staticSeoData.about.canonical}
-        keywords={staticSeoData.about.keywords}
-        ogImage={staticSeoData.about.ogImage}
+        title={seo.title}
+        description={seo.description}
+        canonical={seo.canonical}
+        keywords={seo.keywords}
+        ogImage={seo.ogImage}
         schemas={schemas}
       />
 
@@ -38,16 +80,16 @@ export default function AboutPage({ onOpenEnrollment }) {
           </div>
 
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-900 border border-gold-500/30 text-gold-300 text-xs font-semibold uppercase tracking-wider">
-            <IslamicStarDeco className="w-3.5 h-3.5" />
-            <span>Our Heritage & Mission</span>
+            <IslamicStarDeco className="w-3.5 h-3.5 shrink-0" />
+            <span>{t('about.badge')}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-bold font-serif text-white tracking-tight">
-            About Al Kahf Foundation
+            {t('about.heading')}
           </h1>
 
-          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto">
-            Dedicated to spreading authentic Islamic knowledge and nurturing a deep, grounded understanding of Islam for men and women worldwide.
+          <p className="text-emerald-200 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            {t('about.descParagraph')}
           </p>
         </div>
       </section>
@@ -59,39 +101,39 @@ export default function AboutPage({ onOpenEnrollment }) {
             
             <div className="lg:col-span-6 space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 text-xs font-semibold uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-gold-600" />
-                <span>Our Foundation</span>
+                <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+                <span>{t('about.guidingPrinciple')}</span>
               </div>
               
-              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif">
-                Illuminating Hearts With Authentic Islamic Knowledge
+              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif leading-snug">
+                {t('about.storyTitle')}
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Named after the sacred Surah Al-Kahf—the sanctuary of faith, discernment, and steadfastness against the trials of time—<strong>Al Kahf Foundation</strong> was established to provide Muslims with an intellectual and spiritual haven.
+                {t('about.storyP1')}
               </p>
 
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                In an age of ideological confusion, rapid cultural shifts, and superficial soundbites, we provide structured, academically sound, and deeply transformative Islamic learning. Our courses are grounded in orthodox Sunni scholarship, delivered with modern teaching methodologies.
+                {t('about.storyP2')}
               </p>
 
               <div className="pt-2 space-y-3">
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700">
-                    <strong>Authenticity First:</strong> Uncompromising adherence to the Holy Quran, authentic Sunnah, and classical consensus.
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong>{t('about.point1Title')}</strong> {t('about.point1Desc')}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700">
-                    <strong>Respectful & Inclusive:</strong> Dedicated cohorts for men and women respecting modesty, privacy, and tailored schedules.
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong>{t('about.point2Title')}</strong> {t('about.point2Desc')}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700">
-                    <strong>Practical Spiritual Impact:</strong> Transforming theory into daily character (Akhlaq), sincere worship, and family harmony.
+                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                    <strong>{t('about.point3Title')}</strong> {t('about.point3Desc')}
                   </p>
                 </div>
               </div>
@@ -107,8 +149,8 @@ export default function AboutPage({ onOpenEnrollment }) {
                   className="w-full h-[280px] sm:h-[450px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-emerald-950/90 backdrop-blur-md text-white border border-gold-500/30 text-xs sm:text-sm italic">
-                  &ldquo;Knowledge is not merely memorizing narrations; true knowledge is the fear of Allah and clarity of truth.&rdquo;
+                <div className="absolute bottom-6 inset-x-6 p-5 rounded-2xl bg-emerald-950/90 backdrop-blur-md text-white border border-gold-500/30 text-xs sm:text-sm italic leading-relaxed">
+                  &ldquo;{t('about.quote')}&rdquo;
                 </div>
               </div>
             </div>
@@ -123,19 +165,19 @@ export default function AboutPage({ onOpenEnrollment }) {
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif">
-              Our Core Educational Disciplines
+              {t('about.allDisciplinesTitle')}
             </h2>
             <IslamicDivider showArabic={false} />
             <p className="text-sm sm:text-base text-slate-600">
-              Al Kahf Foundation provides structured learning pathways across the essential domains of Islamic sciences.
+              {t('about.allDisciplinesDesc')}
             </p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {foundationInfo.aboutPillars.map((pillar, idx) => (
+            {disciplines.map((pillar, idx) => (
               <div
                 key={pillar.name}
-                className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-soft-card hover:border-emerald-700 hover:shadow-card-hover transition-all"
+                className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-soft-card hover:border-emerald-700 hover:shadow-card-hover transition-all text-start"
               >
                 <div className="flex items-center justify-between">
                   <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-850 font-bold flex items-center justify-center text-xs">
