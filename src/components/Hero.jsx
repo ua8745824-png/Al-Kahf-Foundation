@@ -6,13 +6,13 @@ import { foundationInfo } from '../data/foundationInfo';
 
 export default function Hero({ onOpenEnrollment }) {
   return (
-    <section className="relative overflow-hidden bg-emerald-950 text-white min-h-[90vh] flex items-center">
+    <section className="relative overflow-hidden bg-emerald-950 text-white min-h-[75vh] sm:min-h-[85vh] lg:min-h-[90vh] flex items-center">
       {/* Background Photography with Sophisticated Dark Emerald Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/hero-quran.jpg"
+          src="/images/al-kahf-foundation-islamic-education.jpg"
           alt="Al Kahf Foundation Islamic Education Background"
-          className="w-full h-full object-cover object-center scale-105 animate-pulse-subtle opacity-30 mix-blend-luminosity filter brightness-75"
+          className="w-full h-full object-cover object-center scale-105 opacity-30 mix-blend-luminosity filter brightness-75"
         />
         {/* Multilayered Gradients for Peaceful Depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-emerald-980 via-emerald-950/95 to-emerald-900/80" />
@@ -20,7 +20,7 @@ export default function Hero({ onOpenEnrollment }) {
         <div className="absolute inset-0 bg-islamic-stars-dark opacity-40 pointer-events-none" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-28">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
           
           {/* Left Column: Headline, Narrative & Dual Action Buttons */}

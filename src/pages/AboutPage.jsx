@@ -104,7 +104,7 @@ export default function AboutPage({ onOpenEnrollment }) {
                   src="/images/about-mosque.jpg"
                   alt="Islamic foundation and classical academy courtyard for authentic knowledge"
                   loading="lazy"
-                  className="w-full h-[450px] object-cover"
+                  className="w-full h-[280px] sm:h-[450px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 p-5 rounded-2xl bg-emerald-950/90 backdrop-blur-md text-white border border-gold-500/30 text-xs sm:text-sm italic">
