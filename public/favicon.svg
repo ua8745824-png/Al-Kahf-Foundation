@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="emeraldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#022412" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5e098" />
+      <stop offset="50%" stop-color="#d4af37" />
+      <stop offset="100%" stop-color="#946f1c" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Rounded Diamond Shield -->
+  <rect x="5" y="5" width="90" height="90" rx="20" fill="url(#emeraldGrad)" stroke="url(#goldGrad)" stroke-width="2" />
+  
+  <!-- Subtle Islamic Arch Outline -->
+  <path d="M25 75V45C25 31.1929 36.1929 20 50 20C63.8071 20 75 31.1929 75 45V75" stroke="url(#goldGrad)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.85" />
+  
+  <!-- Inner Open Book / Quran Leaves -->
+  <path d="M50 42C44 37 34 37 32 38V62C34 61 44 61 50 66C56 61 66 61 68 62V38C66 37 56 37 50 42Z" fill="url(#goldGrad)" fill-opacity="0.15" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linejoin="round" />
+  
+  <!-- Center Star/Beacon Accent -->
+  <circle cx="50" cy="30" r="3.5" fill="url(#goldGrad)" />
+  <path d="M50 22V25M50 35V38M42 30H45M55 30H58" stroke="url(#goldGrad)" stroke-width="1.5" stroke-linecap="round" />
+</svg>

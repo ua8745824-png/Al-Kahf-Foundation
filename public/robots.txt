@@ -1,0 +1,9 @@
+# Robots.txt for Al Kahf Foundation
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap Location
+Sitemap: https://alkahffoundation.org/sitemap.xml
