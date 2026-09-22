@@ -64,7 +64,7 @@ export const staticSeoData = {
     },
     canonical: `${SITE_URL}/programs`,
     keywords: "Islamic programs, special Islamic workshops, Ramadan program, Hajj preparation workshop, Umrah guide program",
-    ogImage: `${SITE_URL}/images/ramadan-course.jpg`,
+    ogImage: `${SITE_URL}/images/course-ramadan.jpg`,
     type: "website"
   },
   teachers: {

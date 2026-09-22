@@ -5,6 +5,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج رمضان الإيماني",
     badge: "Seasonal Intensive",
     icon: "Moon",
+    image: "/images/course-ramadan.jpg",
+    imageAlt: "Peaceful Ramadan atmosphere with glowing lantern and Holy Quran",
     shortDescription: "A comprehensive spiritual, educational and fasting preparation program to maximize the blessings of the holy month.",
     features: [
       "Daily Ramadan reminders & reflections",
@@ -20,6 +22,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج دراسة السيرة النبوية",
     badge: "Character & Leadership",
     icon: "BookOpen",
+    image: "/images/course-seerah.jpg",
+    imageAlt: "Classical Islamic manuscripts and historical setting for Seerah study",
     shortDescription: "An immersive life study of Prophet Muhammad (ﷺ) to build love, emulate morals, and understand prophetic wisdom.",
     features: [
       "Chronological journey from Makkan dawn to Madinah victory",
@@ -35,6 +39,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج الصراط المستقيم",
     badge: "Core Islamic Foundation",
     icon: "Compass",
+    image: "/images/course-history.jpg",
+    imageAlt: "Sirat-ul-Mustaqeem sanctuary and foundational Islamic knowledge",
     shortDescription: "Essential Islamic knowledge designed for men and women covering authentic Aqeedah, daily worship, and heart purification.",
     features: [
       "Sound Islamic Creed (Aqeedah) fundamentals",
@@ -50,6 +56,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج الإعداد لمناسك الحج",
     badge: "Sacred Pilgrimage",
     icon: "MapPin",
+    image: "/images/course-hajj.jpg",
+    imageAlt: "Muslim pilgrims in white Ihram near the Holy Kaaba during Hajj",
     shortDescription: "Comprehensive step-by-step guidance for pilgrims to perform Hajj Mabroor according to the authentic Prophetic Sunnah.",
     features: [
       "Day-by-day practical rituals walkthrough",
@@ -65,6 +73,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج مناسك العمرة الميسرة",
     badge: "Practical Training",
     icon: "ShieldCheck",
+    image: "/images/course-umrah.jpg",
+    imageAlt: "Pilgrim performing Umrah supplication with raised hands in front of the Holy Kaaba",
     shortDescription: "Focused masterclass on the rites of Umrah, authentic supplications, and spiritual etiquettes of the two Holy Mosques.",
     features: [
       "Tawaf, Sa'i, and Ihram visual demonstration",
@@ -80,6 +90,8 @@ export const specialPrograms = [
     arabicTitle: "برنامج إتقان الصلاة والخشوع",
     badge: "Prayer Mastery",
     icon: "Sparkles",
+    image: "/images/course-namaz.jpg",
+    imageAlt: "Muslim worshipper performing Salah prayer with Khushu",
     shortDescription: "Learn the correct method of Salah with authentic posture correction, word-for-word translation, and cultivating Khushu.",
     features: [
       "Step-by-step Sunnah posture correction",
