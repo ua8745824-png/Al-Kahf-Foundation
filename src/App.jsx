@@ -17,6 +17,7 @@ const ProgramsPage = lazy(() => import('./pages/ProgramsPage'));
 const TeachersPage = lazy(() => import('./pages/TeachersPage'));
 const WhyUsPage = lazy(() => import('./pages/WhyUsPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
+const QuranPage = lazy(() => import('./pages/QuranPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Elegant spiritual page loading fallback
@@ -86,6 +87,7 @@ export default function App() {
                 <Route path="/programs" element={<ProgramsPage onOpenEnrollment={handleOpenEnrollment} />} />
                 <Route path="/teachers" element={<TeachersPage onOpenEnrollment={handleOpenEnrollment} />} />
                 <Route path="/why-us" element={<WhyUsPage onOpenEnrollment={handleOpenEnrollment} />} />
+                <Route path="/quran" element={<QuranPage onOpenEnrollment={handleOpenEnrollment} />} />
                 <Route path="/contact" element={<ContactPage />} />
                 
                 {/* 404 Custom Error Route */}

@@ -66,6 +66,7 @@ export default function Navbar({ onOpenEnrollment }) {
     { name: t('nav.home'), path: '/' },
     { name: t('nav.about'), path: '/about' },
     { name: t('nav.courses'), path: '/courses' },
+    { name: t('nav.quran'), path: '/quran', isSpecial: true },
     { name: t('nav.programs'), path: '/programs' },
     { name: t('nav.teachers'), path: '/teachers' },
     { name: t('nav.whyUs'), path: '/why-us' },

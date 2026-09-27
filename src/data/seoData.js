@@ -99,6 +99,22 @@ export const staticSeoData = {
     ogImage: `${SITE_URL}/images/al-kahf-foundation-islamic-education.jpg`,
     type: "website"
   },
+  quran: {
+    title: {
+      en: "The Holy Quran al-Kareem | HD PDF & Interactive Mushaf Reader",
+      ur: "القرآن الکریم | ایچ ڈی پی ڈی ایف اور انٹرایکٹو مصحف ریڈر",
+      ar: "القرآن الكريم | تصفح المصحف الشريف بدقة عالية وتحميل PDF"
+    },
+    description: {
+      en: "Read, listen, and download the best high-definition Quran PDFs on the web: 15-line Madani Mushaf, Color-Coded Tajweed, Indo-Pak script, and 30 Juz with Urdu & English translations.",
+      ur: "آن لائن قرآن مجید کی تلاوت، 15 سطری مدنی مصحف، کلر کوڈڈ تجوید قرآن، 16 سطری حفظ قرآن پی ڈی ایف اور اردو و انگریزی ترجمہ۔",
+      ar: "اقرأ واستمع وحمل أفضل نسخ القرآن الكريم PDF بجودة عالية: مصحف المدينة 15 سطر، مصحف التجويد الملون، ورسم النستعلیق مع الترجمات والتلاوات."
+    },
+    canonical: `${SITE_URL}/quran`,
+    keywords: "Quran PDF, Best Quran PDF, Holy Quran download, Madina Mushaf 15 line PDF, Tajweed Quran PDF, Indo-Pak Quran PDF, Quran al Kareem, Read Quran online, Quran with translation",
+    ogImage: `${SITE_URL}/images/al-kahf-foundation-islamic-education.jpg`,
+    type: "book"
+  },
   contact: {
     title: {
       en: "Contact Al Kahf Foundation | Islamic Education & Admissions",
