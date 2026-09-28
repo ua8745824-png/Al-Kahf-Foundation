@@ -16,6 +16,7 @@ import {
   ChevronDown,
   ChevronUp,
   MessageCircle,
+  Mail,
   Sparkles,
   Shield,
   GraduationCap,
@@ -59,6 +60,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
     return `Assalamu Alaikum, I would like to enroll in "${course.title}". Please provide the syllabus, fee details, and upcoming cohort schedule.`;
   };
 
+  const emailInquirySubject = `${t('courseDetails.readyToEnroll')} ${course.title}`;
+  const emailInquiryUrl = `mailto:${foundationInfo.email}?subject=${encodeURIComponent(emailInquirySubject)}&body=${encodeURIComponent(getInquiryText())}`;
   const whatsappInquiryUrl = `https://wa.me/${foundationInfo.whatsappClean}?text=${encodeURIComponent(getInquiryText())}`;
 
   const toggleModule = (index) => {
@@ -483,10 +486,18 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   </a>
                   <button
                     onClick={() => onOpenEnrollment(rawCourse.id)}
-                    className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-850 hover:bg-emerald-800 text-white font-semibold text-xs sm:text-sm border border-emerald-700"
+                    className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-emerald-850 hover:bg-emerald-800 text-white font-semibold text-xs sm:text-sm border border-emerald-700 flex items-center justify-center gap-2"
                   >
-                    {t('courseDetails.openRegForm')}
+                    <Sparkles className="w-4 h-4 text-gold-400" />
+                    <span>{t('courseDetails.openRegForm')}</span>
                   </button>
+                  <a
+                    href={emailInquiryUrl}
+                    className="w-full sm:w-auto px-5 py-3.5 rounded-xl bg-emerald-950/80 hover:bg-emerald-900 text-emerald-100 font-medium text-xs sm:text-sm border border-emerald-700/80 flex items-center justify-center gap-2 transition-colors"
+                  >
+                    <Mail className="w-4 h-4 text-gold-400" />
+                    <span>{t('courseDetails.emailInquiryBtn')}</span>
+                  </a>
                 </div>
               </div>
 
@@ -523,15 +534,22 @@ export default function CourseDetails({ onOpenEnrollment }) {
                     </li>
                   </ul>
 
-                  <div className="pt-2 border-t border-slate-200">
+                  <div className="pt-2 border-t border-slate-200 space-y-2">
                     <a
                       href={foundationInfo.whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-xs flex items-center justify-center gap-2 shadow"
+                      className="w-full py-3 px-4 rounded-xl bg-green-600 hover:bg-green-500 text-white font-bold text-center text-xs flex items-center justify-center gap-2 shadow transition-colors"
                     >
                       <MessageCircle className="w-4 h-4" />
                       <span>{t('courseDetails.quickInquiry')}</span>
+                    </a>
+                    <a
+                      href={emailInquiryUrl}
+                      className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-semibold text-center text-xs flex items-center justify-center gap-2 transition-colors"
+                    >
+                      <Mail className="w-4 h-4 text-gold-600" />
+                      <span>{t('courseDetails.emailInquiry')}</span>
                     </a>
                   </div>
                 </div>
