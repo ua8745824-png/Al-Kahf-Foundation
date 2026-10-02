@@ -18,7 +18,12 @@
     "contact": "اتصل بنا",
     "enrollNow": "سجّل الآن",
     "language": "اللغة",
-    "menu": "قائمة التنقل"
+    "menu": "قائمة التنقل",
+    "theme": "المظهر",
+    "themeLight": "الوضع الفاتح",
+    "themeDark": "الوضع الداكن",
+    "themeSystem": "مظهر النظام",
+    "toggleTheme": "تبديل المظهر"
   },
   "hadithBanner": {
     "wisdomLabel": "حديث نبوي شريف:",

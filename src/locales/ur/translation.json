@@ -18,7 +18,12 @@
     "contact": "رابطہ",
     "enrollNow": "داخلہ لیں",
     "language": "زبان",
-    "menu": "مینیو"
+    "menu": "مینیو",
+    "theme": "تھیم",
+    "themeLight": "لائٹ موڈ",
+    "themeDark": "ڈارک موڈ",
+    "themeSystem": "سسٹم تھیم",
+    "toggleTheme": "تھیم تبدیل کریں"
   },
   "hadithBanner": {
     "wisdomLabel": "فرمانِ نبوی ﷺ:",

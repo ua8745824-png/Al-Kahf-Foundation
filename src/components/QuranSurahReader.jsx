@@ -203,7 +203,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
       <audio ref={audioRef} onEnded={handleAudioEnded} />
 
       {/* Control Ribbon Header */}
-      <div className="p-4 sm:p-6 rounded-3xl bg-white border border-emerald-900/10 shadow-soft-card flex flex-col lg:flex-row items-center justify-between gap-4">
+      <div className="p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-800/80 shadow-soft-card flex flex-col lg:flex-row items-center justify-between gap-4 transition-colors">
         
         {/* Left: Surah Navigator */}
         <div className="flex items-center gap-2 flex-wrap w-full lg:w-auto">
@@ -211,7 +211,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
           <button
             onClick={() => setSelectedSurahNumber(prev => Math.max(1, prev - 1))}
             disabled={selectedSurahNumber <= 1}
-            className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 disabled:opacity-30 transition-colors"
+            className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-850 text-emerald-950 dark:text-emerald-200 disabled:opacity-30 transition-colors"
             title="Previous Surah"
           >
             <ChevronLeft className="w-4 h-4" />
@@ -220,7 +220,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
           <select
             value={selectedSurahNumber}
             onChange={(e) => setSelectedSurahNumber(parseInt(e.target.value, 10))}
-            className="px-3.5 py-2 rounded-xl bg-emerald-950 text-gold-300 font-bold text-xs shadow-md focus:outline-none focus:ring-2 focus:ring-gold-400 cursor-pointer flex-1 sm:flex-initial"
+            className="px-3.5 py-2 rounded-xl bg-emerald-950 dark:bg-emerald-900 text-gold-300 font-bold text-xs shadow-md focus:outline-none focus:ring-2 focus:ring-gold-400 cursor-pointer flex-1 sm:flex-initial"
             aria-label="Select Surah"
           >
             {surahsData.map((s) => (
@@ -233,7 +233,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
           <button
             onClick={() => setSelectedSurahNumber(prev => Math.min(114, prev + 1))}
             disabled={selectedSurahNumber >= 114}
-            className="p-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 disabled:opacity-30 transition-colors"
+            className="p-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-850 text-emerald-950 dark:text-emerald-200 disabled:opacity-30 transition-colors"
             title="Next Surah"
           >
             <ChevronRight className="w-4 h-4" />
@@ -247,11 +247,11 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                 const q = qarisList.find(item => item.id === e.target.value);
                 if (q) setSelectedQari(q);
               }}
-              className="px-3 py-2 rounded-xl bg-sand-50 border border-emerald-900/20 text-slate-800 text-xs font-semibold focus:outline-none"
+              className="px-3 py-2 rounded-xl bg-sand-50 dark:bg-emerald-950/80 border border-emerald-900/20 dark:border-emerald-800/80 text-slate-800 dark:text-slate-100 text-xs font-semibold focus:outline-none"
               aria-label="Select Qari"
             >
               {qarisList.map(q => (
-                <option key={q.id} value={q.id}>
+                <option key={q.id} value={q.id} className="dark:bg-emerald-950 dark:text-white">
                   🎙️ {q.name}
                 </option>
               ))}
@@ -267,7 +267,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
             placeholder="Search within Surah..."
             value={searchFilter}
             onChange={(e) => setSearchFilter(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-sand-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-gold-400"
+            className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-sand-50 dark:bg-emerald-950/80 border border-slate-200 dark:border-emerald-800/80 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400"
           />
         </div>
 
@@ -280,7 +280,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
             className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold shadow-md transition-all ${
               isPlayingFullSurah
                 ? 'bg-amber-600 text-white animate-pulse'
-                : 'bg-emerald-900 hover:bg-emerald-850 text-gold-300'
+                : 'bg-emerald-900 hover:bg-emerald-850 dark:bg-emerald-800 dark:hover:bg-emerald-750 text-gold-300'
             }`}
           >
             {isPlayingFullSurah ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
@@ -288,11 +288,11 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
           </button>
 
           {/* Translation Checkbox Toggles */}
-          <div className="flex items-center p-1 rounded-xl bg-sand-50 border border-slate-200 text-xs font-semibold text-slate-700">
+          <div className="flex items-center p-1 rounded-xl bg-sand-50 dark:bg-emerald-950/80 border border-slate-200 dark:border-emerald-800/80 text-xs font-semibold text-slate-700 dark:text-slate-300">
             <button
               onClick={() => setShowEnglish(!showEnglish)}
               className={`px-2.5 py-1 rounded-lg transition-colors ${
-                showEnglish ? 'bg-emerald-900 text-gold-300 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                showEnglish ? 'bg-emerald-900 dark:bg-emerald-800 text-gold-300 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               English
@@ -300,7 +300,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
             <button
               onClick={() => setShowUrdu(!showUrdu)}
               className={`px-2.5 py-1 rounded-lg transition-colors ${
-                showUrdu ? 'bg-emerald-900 text-gold-300 shadow-sm' : 'text-slate-500 hover:text-slate-900'
+                showUrdu ? 'bg-emerald-900 dark:bg-emerald-800 text-gold-300 shadow-sm' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
               اردو
@@ -308,18 +308,18 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
           </div>
 
           {/* Arabic Font Size */}
-          <div className="flex items-center gap-1 bg-sand-50 p-1 rounded-xl border border-slate-200">
+          <div className="flex items-center gap-1 bg-sand-50 dark:bg-emerald-950/80 p-1 rounded-xl border border-slate-200 dark:border-emerald-800/80">
             <button
               onClick={() => setFontSize(prev => Math.max(20, prev - 2))}
-              className="p-1 rounded-lg hover:bg-white text-slate-700 text-xs font-bold"
+              className="p-1 rounded-lg hover:bg-white dark:hover:bg-emerald-900 text-slate-700 dark:text-slate-300 text-xs font-bold"
               title="Decrease Font Size"
             >
               A-
             </button>
-            <span className="text-[11px] font-bold text-slate-600 px-1">{fontSize}px</span>
+            <span className="text-[11px] font-bold text-slate-600 dark:text-slate-300 px-1">{fontSize}px</span>
             <button
               onClick={() => setFontSize(prev => Math.min(46, prev + 2))}
-              className="p-1 rounded-lg hover:bg-white text-slate-700 text-xs font-bold"
+              className="p-1 rounded-lg hover:bg-white dark:hover:bg-emerald-900 text-slate-700 dark:text-slate-300 text-xs font-bold"
               title="Increase Font Size"
             >
               A+
@@ -367,9 +367,9 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
 
       {/* Ayahs Stream */}
       {isLoading ? (
-        <div className="p-16 text-center rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+        <div className="p-16 text-center rounded-3xl bg-white dark:bg-[#032012] border border-slate-200 dark:border-emerald-800/80 shadow-sm space-y-4">
           <div className="w-12 h-12 mx-auto rounded-full border-4 border-gold-500/30 border-t-gold-500 animate-spin" />
-          <p className="text-sm font-semibold text-emerald-950 font-serif">
+          <p className="text-sm font-semibold text-emerald-950 dark:text-emerald-200 font-serif">
             Loading Surah {currentSurahMeta.name} with Translations...
           </p>
         </div>
@@ -385,20 +385,20 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                 id={`ayah-${ayah.numberInSurah}`}
                 className={`p-6 sm:p-8 rounded-3xl transition-all duration-300 border ${
                   isPlayingThis
-                    ? 'bg-emerald-50/90 border-gold-500 shadow-lg ring-2 ring-gold-400/40'
-                    : 'bg-white hover:bg-sand-50/70 border-emerald-900/10 shadow-soft-card'
+                    ? 'bg-emerald-50/90 dark:bg-emerald-950/90 border-gold-500 shadow-lg ring-2 ring-gold-400/40'
+                    : 'bg-white dark:bg-[#032012] hover:bg-sand-50/70 dark:hover:bg-emerald-950/50 border-emerald-900/10 dark:border-emerald-850 shadow-soft-card'
                 }`}
               >
                 
                 {/* Ayah Top Meta & Action Ribbon */}
-                <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100">
+                <div className="flex items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100 dark:border-emerald-900/60">
                   
                   {/* Ayah Number Badge */}
                   <div className="flex items-center gap-2">
                     <span className="w-8 h-8 rounded-xl bg-emerald-950 text-gold-300 font-bold text-xs flex items-center justify-center shadow">
                       {ayah.numberInSurah}
                     </span>
-                    <span className="text-[11px] font-semibold text-slate-500">
+                    <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
                       Surah {selectedSurahNumber}:{ayah.numberInSurah} • Page {ayah.page}
                     </span>
                   </div>
@@ -412,7 +412,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                       className={`p-2 rounded-xl text-xs font-bold transition-all ${
                         isPlayingThis
                           ? 'bg-amber-600 text-white shadow-md'
-                          : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-950'
+                          : 'bg-emerald-50 dark:bg-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-850 text-emerald-950 dark:text-emerald-200'
                       }`}
                       title={isPlayingThis ? "Pause Recitation" : "Listen to this Ayah"}
                     >
@@ -425,7 +425,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                       className={`p-2 rounded-xl transition-all ${
                         isBookmarked
                           ? 'bg-gold-500 text-slate-950 shadow-sm'
-                          : 'bg-slate-50 hover:bg-slate-100 text-slate-600'
+                          : 'bg-slate-50 dark:bg-emerald-900/40 hover:bg-slate-100 dark:hover:bg-emerald-900/70 text-slate-600 dark:text-slate-300'
                       }`}
                       title={isBookmarked ? "Ayah Bookmarked" : "Bookmark this Ayah"}
                     >
@@ -435,7 +435,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                     {/* Copy Ayah */}
                     <button
                       onClick={() => copyAyahToClipboard(ayah)}
-                      className="p-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-600 transition-colors"
+                      className="p-2 rounded-xl bg-slate-50 dark:bg-emerald-900/40 hover:bg-slate-100 dark:hover:bg-emerald-900/70 text-slate-600 dark:text-slate-300 transition-colors"
                       title="Copy Ayah with Translations"
                     >
                       {copiedAyah === ayah.numberInSurah ? (
@@ -450,7 +450,7 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
 
                 {/* Arabic Text */}
                 <div
-                  className="font-arabic font-bold text-slate-900 text-end leading-[2.2] tracking-wide my-4 select-text"
+                  className="font-arabic font-bold text-slate-900 dark:text-white text-end leading-[2.2] tracking-wide my-4 select-text"
                   style={{ fontSize: `${fontSize}px` }}
                   dir="rtl"
                 >
@@ -459,8 +459,8 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
 
                 {/* English Translation */}
                 {showEnglish && ayah.english && (
-                  <div className="pt-3 border-t border-slate-100 text-start text-xs sm:text-sm text-slate-700 leading-relaxed font-sans">
-                    <span className="font-bold text-emerald-900 text-[11px] uppercase tracking-wider block mb-0.5">
+                  <div className="pt-3 border-t border-slate-100 dark:border-emerald-900/60 text-start text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-sans">
+                    <span className="font-bold text-emerald-900 dark:text-gold-300 text-[11px] uppercase tracking-wider block mb-0.5">
                       Saheeh International:
                     </span>
                     {ayah.english}
@@ -470,10 +470,10 @@ export default function QuranSurahReader({ initialSurah = 18, onOpenEnrollment }
                 {/* Urdu Translation */}
                 {showUrdu && ayah.urdu && (
                   <div
-                    className="pt-3 mt-2 border-t border-slate-100 text-end text-sm sm:text-base text-slate-800 leading-loose font-urdu select-text"
+                    className="pt-3 mt-2 border-t border-slate-100 dark:border-emerald-900/60 text-end text-sm sm:text-base text-slate-800 dark:text-slate-200 leading-loose font-urdu select-text"
                     dir="rtl"
                   >
-                    <span className="font-bold text-emerald-900 text-[11px] block mb-0.5 font-sans">
+                    <span className="font-bold text-emerald-900 dark:text-gold-300 text-[11px] block mb-0.5 font-sans">
                       ترجمہ (فتح محمد جالندھری):
                     </span>
                     {ayah.urdu}

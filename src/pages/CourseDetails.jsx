@@ -90,7 +90,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
   const otherCourses = coursesData.filter((c) => c.id !== rawCourse.id).slice(0, 3);
 
   return (
-    <div className="bg-sand-50 animate-fade-in text-start">
+    <div className="bg-sand-50 dark:bg-[#02180d] animate-fade-in text-start transition-colors duration-300">
       {/* Course Dynamic Page-Specific SEO & Course Schema.org JSON-LD */}
       <SEO
         title={`${course.title} | Al Kahf Foundation`}
@@ -229,7 +229,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
 
             {/* Right Course Summary Card */}
             <div className="lg:col-span-4">
-              <div className="bg-white text-slate-900 rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-200 space-y-5">
+              <div className="bg-white dark:bg-[#032012] text-slate-900 dark:text-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-slate-200 dark:border-emerald-800/80 space-y-5">
                 <div className="relative rounded-2xl overflow-hidden h-44 bg-emerald-950">
                   <img
                     src={rawCourse.image || "/images/al-kahf-foundation-islamic-education.jpg"}
@@ -244,24 +244,24 @@ export default function CourseDetails({ onOpenEnrollment }) {
                 </div>
 
                 <div className="space-y-3 text-xs">
-                  <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">{t('courseDetails.learningCohorts')}</span>
-                    <span className="font-bold text-slate-900">{t('courseDetails.separateCohorts')}</span>
+                  <div className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-emerald-900/60">
+                    <span className="text-slate-500 dark:text-slate-400">{t('courseDetails.learningCohorts')}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">{t('courseDetails.separateCohorts')}</span>
                   </div>
 
-                  <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">{t('courseDetails.prerequisites')}</span>
-                    <span className="font-bold text-slate-900">{course.prerequisites || t('courseDetails.none')}</span>
+                  <div className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-emerald-900/60">
+                    <span className="text-slate-500 dark:text-slate-400">{t('courseDetails.prerequisites')}</span>
+                    <span className="font-bold text-slate-900 dark:text-white">{course.prerequisites || t('courseDetails.none')}</span>
                   </div>
 
-                  <div className="flex items-center justify-between py-2 border-b border-slate-100">
-                    <span className="text-slate-500">{t('courseDetails.classFormat')}</span>
-                    <span className="font-bold text-emerald-800">{course.learningMethod}</span>
+                  <div className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-emerald-900/60">
+                    <span className="text-slate-500 dark:text-slate-400">{t('courseDetails.classFormat')}</span>
+                    <span className="font-bold text-emerald-800 dark:text-emerald-300">{course.learningMethod}</span>
                   </div>
 
                   <div className="flex items-center justify-between py-2">
-                    <span className="text-slate-500">{t('courseDetails.feeTiming')}</span>
-                    <span className="font-bold text-gold-700 bg-gold-50 px-2 py-0.5 rounded">{t('courseDetails.inquireWhatsApp')}</span>
+                    <span className="text-slate-500 dark:text-slate-400">{t('courseDetails.feeTiming')}</span>
+                    <span className="font-bold text-gold-700 dark:text-gold-300 bg-gold-50 dark:bg-amber-950/60 px-2 py-0.5 rounded">{t('courseDetails.inquireWhatsApp')}</span>
                   </div>
                 </div>
 
@@ -269,7 +269,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   href={whatsappInquiryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-bold text-center text-xs shadow flex items-center justify-center gap-2 transition-all"
+                  className="w-full py-3.5 px-4 rounded-xl bg-emerald-900 hover:bg-emerald-850 dark:bg-emerald-800 dark:hover:bg-emerald-750 text-white font-bold text-center text-xs shadow flex items-center justify-center gap-2 transition-all"
                 >
                   <MessageCircle className="w-4 h-4 text-green-400 shrink-0" />
                   <span>{t('courseDetails.inquireUpcomingBatch')}</span>
@@ -283,7 +283,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
       </section>
 
       {/* Course Detailed Body Sections */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white dark:bg-[#02180d] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
@@ -292,8 +292,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
               
               {/* 1. What You Will Learn & Objectives */}
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-gold-600 shrink-0" />
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-serif flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-gold-600 dark:text-gold-400 shrink-0" />
                   <span>{t('courseDetails.whatYouLearn')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
@@ -302,10 +302,10 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   {rawCourse.courseBenefits?.map((benefit, idx) => (
                     <div
                       key={idx}
-                      className="p-4 rounded-2xl bg-sand-50 border border-slate-200/80 flex items-start gap-3"
+                      className="p-4 rounded-2xl bg-sand-50 dark:bg-emerald-950/60 border border-slate-200/80 dark:border-emerald-850/80 flex items-start gap-3"
                     >
-                      <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed font-medium">
                         {benefit}
                       </p>
                     </div>
@@ -315,8 +315,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
 
               {/* 2. Who This Course Is For */}
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <Users className="w-5 h-5 text-gold-600 shrink-0" />
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-serif flex items-center gap-2">
+                  <Users className="w-5 h-5 text-gold-600 dark:text-gold-400 shrink-0" />
                   <span>{t('courseDetails.whoIsThisFor')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
@@ -325,9 +325,9 @@ export default function CourseDetails({ onOpenEnrollment }) {
                   {rawCourse.whoIsThisFor?.map((audience, idx) => (
                     <div
                       key={idx}
-                      className="p-3.5 rounded-xl bg-emerald-50/50 border border-emerald-100 flex items-center gap-3 text-xs sm:text-sm text-slate-800"
+                      className="p-3.5 rounded-xl bg-emerald-50/50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-850/80 flex items-center gap-3 text-xs sm:text-sm text-slate-800 dark:text-slate-200"
                     >
-                      <span className="w-2 h-2 rounded-full bg-gold-600 shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-gold-600 dark:bg-gold-400 shrink-0" />
                       <span>{audience}</span>
                     </div>
                   ))}
@@ -337,11 +337,11 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* 3. Course Outline / Syllabus */}
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-gold-600 shrink-0" />
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-serif flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-gold-600 dark:text-gold-400 shrink-0" />
                     <span>{t('courseDetails.courseOutline')}</span>
                   </h2>
-                  <span className="text-xs text-slate-500 font-medium">
+                  <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
                     {rawCourse.outline?.length || 0} {t('courseDetails.keyModules')}
                   </span>
                 </div>
@@ -353,36 +353,36 @@ export default function CourseDetails({ onOpenEnrollment }) {
                     return (
                       <div
                         key={idx}
-                        className="rounded-2xl border border-slate-200 overflow-hidden bg-sand-50/60 transition-all"
+                        className="rounded-2xl border border-slate-200 dark:border-emerald-800/70 overflow-hidden bg-sand-50/60 dark:bg-emerald-950/40 transition-all"
                       >
                         <button
                           onClick={() => toggleModule(idx)}
-                          className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/60 transition-colors"
+                          className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/60 dark:hover:bg-emerald-900/40 transition-colors"
                         >
                           <div className="flex items-center gap-3">
-                            <span className="px-2.5 py-1 rounded-md bg-emerald-900 text-gold-300 font-bold text-xs shrink-0">
+                            <span className="px-2.5 py-1 rounded-md bg-emerald-900 dark:bg-emerald-800 text-gold-300 font-bold text-xs shrink-0">
                               {mod.week}
                             </span>
-                            <span className="font-bold text-sm sm:text-base text-slate-900">
+                            <span className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                               {mod.title}
                             </span>
                           </div>
                           {isOpen ? (
-                            <ChevronUp className="w-5 h-5 text-emerald-800 shrink-0 ms-2" />
+                            <ChevronUp className="w-5 h-5 text-emerald-800 dark:text-emerald-300 shrink-0 ms-2" />
                           ) : (
-                            <ChevronDown className="w-5 h-5 text-slate-400 shrink-0 ms-2" />
+                            <ChevronDown className="w-5 h-5 text-slate-400 dark:text-slate-500 shrink-0 ms-2" />
                           )}
                         </button>
 
                         {isOpen && (
-                          <div className="p-5 pt-2 bg-white border-t border-slate-100 space-y-2 animate-fade-in">
-                            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                          <div className="p-5 pt-2 bg-white dark:bg-emerald-950/80 border-t border-slate-100 dark:border-emerald-850 space-y-2 animate-fade-in">
+                            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                               {t('courseDetails.moduleTopics')}
                             </h4>
-                            <ul className="space-y-2 text-xs sm:text-sm text-slate-700">
+                            <ul className="space-y-2 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                               {mod.topics?.map((topic, tIdx) => (
                                 <li key={tIdx} className="flex items-start gap-2">
-                                  <span className="text-emerald-700 font-bold">•</span>
+                                  <span className="text-emerald-700 dark:text-emerald-400 font-bold">•</span>
                                   <span>{topic}</span>
                                 </li>
                               ))}
@@ -397,27 +397,27 @@ export default function CourseDetails({ onOpenEnrollment }) {
 
               {/* 4. Teacher & Faculty Info */}
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                  <GraduationCap className="w-5 h-5 text-gold-600 shrink-0" />
+                <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-serif flex items-center gap-2">
+                  <GraduationCap className="w-5 h-5 text-gold-600 dark:text-gold-400 shrink-0" />
                   <span>{t('courseDetails.instructorFaculty')}</span>
                 </h2>
                 <IslamicDivider showArabic={false} />
 
-                <div className="p-6 rounded-2xl bg-sand-50 border border-slate-200 flex flex-col sm:flex-row items-start sm:items-center gap-5">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-900 text-gold-300 flex items-center justify-center font-bold text-xl shrink-0 shadow-md">
+                <div className="p-6 rounded-2xl bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                  <div className="w-16 h-16 rounded-2xl bg-emerald-900 dark:bg-emerald-850 text-gold-300 flex items-center justify-center font-bold text-xl shrink-0 shadow-md">
                     <GraduationCap className="w-8 h-8 text-gold-400" />
                   </div>
                   <div className="space-y-1">
-                    <h3 className="text-lg font-bold text-slate-900">
+                    <h3 className="text-lg font-bold text-slate-900 dark:text-white">
                       {rawCourse.teacher?.name}
                     </h3>
-                    <p className="text-xs font-semibold text-emerald-800">
+                    <p className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
                       {rawCourse.teacher?.title}
                     </p>
-                    <p className="text-xs text-slate-500 italic">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 italic">
                       {rawCourse.teacher?.note}
                     </p>
-                    <span className="inline-block mt-1 text-[11px] text-amber-800 bg-amber-50 px-2 py-0.5 rounded border border-amber-200 font-medium">
+                    <span className="inline-block mt-1 text-[11px] text-amber-800 dark:text-gold-300 bg-amber-50 dark:bg-amber-950/50 px-2 py-0.5 rounded border border-amber-200 dark:border-amber-700/60 font-medium">
                       {t('courseDetails.facultyUpdating')}
                     </span>
                   </div>
@@ -427,8 +427,8 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* 5. Frequently Asked Questions */}
               {rawCourse.faqs && rawCourse.faqs.length > 0 && (
                 <div className="space-y-4">
-                  <h2 className="text-2xl font-bold text-slate-900 font-serif flex items-center gap-2">
-                    <HelpCircle className="w-5 h-5 text-gold-600 shrink-0" />
+                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white font-serif flex items-center gap-2">
+                    <HelpCircle className="w-5 h-5 text-gold-600 dark:text-gold-400 shrink-0" />
                     <span>{t('courseDetails.faqs')}</span>
                   </h2>
                   <IslamicDivider showArabic={false} />
@@ -439,23 +439,23 @@ export default function CourseDetails({ onOpenEnrollment }) {
                       return (
                         <div
                           key={idx}
-                          className="rounded-2xl border border-slate-200 overflow-hidden bg-sand-50/40"
+                          className="rounded-2xl border border-slate-200 dark:border-emerald-800/70 overflow-hidden bg-sand-50/40 dark:bg-emerald-950/40"
                         >
                           <button
                             onClick={() => toggleFaq(idx)}
-                            className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/50 transition-colors"
+                            className="w-full p-4 sm:p-5 flex items-center justify-between text-start hover:bg-slate-100/50 dark:hover:bg-emerald-900/40 transition-colors"
                           >
-                            <span className="font-bold text-xs sm:text-sm text-slate-900">
+                            <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
                               {faq.q}
                             </span>
                             {isOpen ? (
-                              <ChevronUp className="w-4 h-4 text-emerald-800 shrink-0 ms-2" />
+                              <ChevronUp className="w-4 h-4 text-emerald-800 dark:text-emerald-300 shrink-0 ms-2" />
                             ) : (
-                              <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ms-2" />
+                              <ChevronDown className="w-4 h-4 text-slate-400 dark:text-slate-500 shrink-0 ms-2" />
                             )}
                           </button>
                           {isOpen && (
-                            <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 leading-relaxed animate-fade-in">
+                            <div className="p-5 pt-0 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed animate-fade-in">
                               {faq.a}
                             </div>
                           )}
@@ -509,32 +509,32 @@ export default function CourseDetails({ onOpenEnrollment }) {
               {/* Sticky Contact Widget */}
               <div className="sticky top-24 space-y-6">
                 
-                <div className="bg-sand-50 rounded-3xl p-6 border border-slate-200 shadow-soft-card space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900">
-                    <Shield className="w-4 h-4 text-gold-600 shrink-0" />
+                <div className="bg-sand-50 dark:bg-[#032012] rounded-3xl p-6 border border-slate-200 dark:border-emerald-800/80 shadow-soft-card space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-emerald-900 dark:text-gold-300">
+                    <Shield className="w-4 h-4 text-gold-600 dark:text-gold-400 shrink-0" />
                     <span>{t('courseDetails.whyLearnTitle')}</span>
                   </div>
 
-                  <ul className="space-y-2.5 text-xs text-slate-600">
+                  <ul className="space-y-2.5 text-xs text-slate-600 dark:text-slate-300">
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <span>{t('courseDetails.r1')}</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <span>{t('courseDetails.r2')}</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <span>{t('courseDetails.r3')}</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
                       <span>{t('courseDetails.r4')}</span>
                     </li>
                   </ul>
 
-                  <div className="pt-2 border-t border-slate-200 space-y-2">
+                  <div className="pt-2 border-t border-slate-200 dark:border-emerald-900 space-y-2">
                     <a
                       href={foundationInfo.whatsappUrl}
                       target="_blank"
@@ -546,17 +546,17 @@ export default function CourseDetails({ onOpenEnrollment }) {
                     </a>
                     <a
                       href={emailInquiryUrl}
-                      className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 font-semibold text-center text-xs flex items-center justify-center gap-2 transition-colors"
+                      className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 dark:bg-emerald-900/50 hover:bg-emerald-100 dark:hover:bg-emerald-850 text-emerald-900 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-700/60 font-semibold text-center text-xs flex items-center justify-center gap-2 transition-colors"
                     >
-                      <Mail className="w-4 h-4 text-gold-600" />
+                      <Mail className="w-4 h-4 text-gold-600 dark:text-gold-400" />
                       <span>{t('courseDetails.emailInquiry')}</span>
                     </a>
                   </div>
                 </div>
 
                 {/* Related Courses */}
-                <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft-card space-y-4">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <div className="bg-white dark:bg-[#032012] rounded-3xl p-6 border border-slate-200 dark:border-emerald-800/80 shadow-soft-card space-y-4">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
                     {t('courseDetails.otherCourses')}
                   </h4>
 
@@ -567,12 +567,12 @@ export default function CourseDetails({ onOpenEnrollment }) {
                         <Link
                           key={other.id}
                           to={`/courses/${other.slug}`}
-                          className="block p-3 rounded-xl bg-sand-50 hover:bg-emerald-50/60 border border-slate-200 hover:border-emerald-700 transition-all group"
+                          className="block p-3 rounded-xl bg-sand-50 dark:bg-emerald-950/60 hover:bg-emerald-50/60 dark:hover:bg-emerald-900/60 border border-slate-200 dark:border-emerald-850 hover:border-emerald-700 dark:hover:border-gold-500/50 transition-all group"
                         >
-                          <span className="text-[10px] font-bold text-gold-700 uppercase block">
+                          <span className="text-[10px] font-bold text-gold-700 dark:text-gold-400 uppercase block">
                             {locOther.category}
                           </span>
-                          <h5 className="text-xs font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
+                          <h5 className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors">
                             {locOther.title}
                           </h5>
                         </Link>
@@ -582,7 +582,7 @@ export default function CourseDetails({ onOpenEnrollment }) {
 
                   <Link
                     to="/courses"
-                    className="block text-center text-xs font-bold text-emerald-900 hover:underline pt-1"
+                    className="block text-center text-xs font-bold text-emerald-900 dark:text-gold-400 hover:underline pt-1"
                   >
                     {t('courseDetails.viewAllCourses')}
                   </Link>

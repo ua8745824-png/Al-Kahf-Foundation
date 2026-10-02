@@ -91,30 +91,30 @@ export default function Teachers() {
   };
 
   return (
-    <section className="py-20 bg-sand-50 relative overflow-hidden" id="teachers-section">
+    <section className="py-20 bg-sand-50 dark:bg-[#02180d] relative overflow-hidden transition-colors duration-150" id="teachers-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold uppercase tracking-wider">
-            <GraduationCap className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wider border border-emerald-200/40 dark:border-emerald-700/50">
+            <GraduationCap className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
             <span>{t('teachers.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-serif">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
             {t('teachers.heading')}
           </h2>
 
           <IslamicDivider showArabic={false} />
 
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-emerald-100/80 leading-relaxed">
             {t('teachers.description')}
           </p>
         </div>
 
         {/* Client Notice Regarding Official Faculty Profiles */}
-        <div className="mt-8 max-w-2xl mx-auto p-4 rounded-xl bg-amber-50/80 border border-amber-200/80 text-amber-900 text-xs flex items-center gap-3 text-start">
-          <Info className="w-5 h-5 text-amber-600 shrink-0" />
+        <div className="mt-8 max-w-2xl mx-auto p-4 rounded-xl bg-amber-50/80 dark:bg-amber-950/40 border border-amber-200/80 dark:border-amber-700/50 text-amber-900 dark:text-amber-200 text-xs flex items-center gap-3 text-start">
+          <Info className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0" />
           <p>
             <strong>{t('teachers.noticeTitle')}</strong> {t('teachers.noticeDesc')}
           </p>
@@ -128,7 +128,7 @@ export default function Teachers() {
             return (
               <div
                 key={rawTeacher.id}
-                className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-soft-card hover:shadow-card-hover hover:border-emerald-700/60 transition-all duration-300 flex flex-col justify-between group text-start"
+                className="bg-white dark:bg-emerald-950/70 rounded-2xl p-6 border border-slate-200/90 dark:border-emerald-800/60 shadow-soft-card hover:shadow-card-hover hover:border-emerald-700/60 dark:hover:border-gold-500/50 transition-all duration-300 flex flex-col justify-between group text-start"
               >
                 <div className="space-y-4">
                   
@@ -138,38 +138,38 @@ export default function Teachers() {
                   </div>
 
                   <div className="text-center space-y-1">
-                    <h3 className="text-base font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
+                    <h3 className="text-base font-bold text-slate-900 dark:text-white group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors">
                       {teacher.name}
                     </h3>
-                    <p className="text-xs font-semibold text-emerald-800">
+                    <p className="text-xs font-semibold text-emerald-800 dark:text-gold-400">
                       {teacher.role}
                     </p>
                   </div>
 
-                  <div className="space-y-2 pt-2 border-t border-slate-100 text-xs">
+                  <div className="space-y-2 pt-2 border-t border-slate-100 dark:border-emerald-900/60 text-xs">
                     <div>
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                      <span className="text-[11px] font-bold text-slate-400 dark:text-emerald-400/80 uppercase tracking-wider block">
                         {t('teachers.qualLabel')}
                       </span>
-                      <p className="text-slate-700 font-medium">{teacher.qualification}</p>
+                      <p className="text-slate-700 dark:text-slate-200 font-medium">{teacher.qualification}</p>
                     </div>
 
                     <div>
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                      <span className="text-[11px] font-bold text-slate-400 dark:text-emerald-400/80 uppercase tracking-wider block">
                         {t('teachers.expLabel')}
                       </span>
-                      <p className="text-slate-700 font-medium">{teacher.expertise}</p>
+                      <p className="text-slate-700 dark:text-slate-200 font-medium">{teacher.expertise}</p>
                     </div>
 
-                    <p className="text-[11px] text-slate-500 italic pt-1 leading-relaxed">
+                    <p className="text-[11px] text-slate-500 dark:text-emerald-200/70 italic pt-1 leading-relaxed">
                       {teacher.bio}
                     </p>
                   </div>
 
                 </div>
 
-                <div className="mt-5 pt-3 border-t border-slate-100 text-center">
-                  <span className="text-[11px] font-bold text-gold-700 bg-gold-50 px-2.5 py-1 rounded-md border border-gold-200 inline-block">
+                <div className="mt-5 pt-3 border-t border-slate-100 dark:border-emerald-900/60 text-center">
+                  <span className="text-[11px] font-bold text-gold-700 dark:text-gold-300 bg-gold-50 dark:bg-gold-500/20 px-2.5 py-1 rounded-md border border-gold-200 dark:border-gold-500/30 inline-block">
                     {t('teachers.verifiedLabel')}
                   </span>
                 </div>

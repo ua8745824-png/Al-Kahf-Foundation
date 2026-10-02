@@ -61,7 +61,7 @@ export default function AboutPage({ onOpenEnrollment }) {
   ];
 
   return (
-    <div className="bg-sand-50 animate-fade-in text-start">
+    <div className="bg-sand-50 dark:bg-[#02180d] animate-fade-in text-start transition-colors duration-300">
       <SEO
         title={seo.title}
         description={seo.description}
@@ -95,44 +95,44 @@ export default function AboutPage({ onOpenEnrollment }) {
       </section>
 
       {/* Main Narrative & Story */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white dark:bg-[#02180d] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             <div className="lg:col-span-6 space-y-5">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-900 text-xs font-semibold uppercase">
-                <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 text-xs font-semibold uppercase">
+                <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
                 <span>{t('about.guidingPrinciple')}</span>
               </div>
               
-              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif leading-snug">
+              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white font-serif leading-snug">
                 {t('about.storyTitle')}
               </h2>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 {t('about.storyP1')}
               </p>
 
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
                 {t('about.storyP2')}
               </p>
 
               <div className="pt-2 space-y-3">
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
                     <strong>{t('about.point1Title')}</strong> {t('about.point1Desc')}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
                     <strong>{t('about.point2Title')}</strong> {t('about.point2Desc')}
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-200 leading-relaxed">
                     <strong>{t('about.point3Title')}</strong> {t('about.point3Desc')}
                   </p>
                 </div>
@@ -141,7 +141,7 @@ export default function AboutPage({ onOpenEnrollment }) {
             </div>
 
             <div className="lg:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-sand-100">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-sand-100 dark:border-emerald-900/80">
                 <img
                   src="/images/about-mosque.jpg"
                   alt="Islamic foundation and classical academy courtyard for authentic knowledge"
@@ -160,15 +160,15 @@ export default function AboutPage({ onOpenEnrollment }) {
       </section>
 
       {/* 9 Core Knowledge Pillars */}
-      <section className="py-16 sm:py-20 bg-sand-50">
+      <section className="py-16 sm:py-20 bg-sand-50 dark:bg-[#032012] transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-3xl mx-auto space-y-3">
-            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 font-serif">
+            <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white font-serif">
               {t('about.allDisciplinesTitle')}
             </h2>
             <IslamicDivider showArabic={false} />
-            <p className="text-sm sm:text-base text-slate-600">
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300">
               {t('about.allDisciplinesDesc')}
             </p>
           </div>
@@ -177,18 +177,18 @@ export default function AboutPage({ onOpenEnrollment }) {
             {disciplines.map((pillar, idx) => (
               <div
                 key={pillar.name}
-                className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-soft-card hover:border-emerald-700 hover:shadow-card-hover transition-all text-start"
+                className="bg-white dark:bg-emerald-950/60 rounded-2xl p-6 border border-slate-200/90 dark:border-emerald-800/80 shadow-soft-card hover:border-emerald-700 dark:hover:border-gold-500/60 hover:shadow-card-hover transition-all text-start"
               >
                 <div className="flex items-center justify-between">
-                  <span className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-850 font-bold flex items-center justify-center text-xs">
+                  <span className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-900 text-emerald-850 dark:text-gold-300 font-bold flex items-center justify-center text-xs">
                     0{idx + 1}
                   </span>
                   <IslamicStarDeco className="w-4 h-4 text-gold-500" />
                 </div>
-                <h3 className="text-base font-bold text-slate-900 mt-4">
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mt-4">
                   {pillar.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>
