@@ -115,7 +115,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
     <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
       
       {/* Modal Container */}
-      <div className="relative w-full max-w-xl bg-white dark:bg-[#032012] rounded-3xl shadow-2xl border border-gold-500/30 dark:border-gold-500/40 overflow-hidden my-8 animate-slide-up text-start">
+      <div className="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-gold-500/30 overflow-hidden my-8 animate-slide-up text-start">
         
         {/* Top Header Banner */}
         <div className="bg-gradient-to-r from-emerald-950 via-emerald-900 to-emerald-950 p-6 text-white relative">
@@ -148,28 +148,28 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               
               {submittedMethod === 'email' ? (
                 <>
-                  <div className="w-16 h-16 mx-auto rounded-full bg-amber-50 dark:bg-amber-950/60 text-gold-700 dark:text-gold-400 flex items-center justify-center border-2 border-gold-400 shadow-sm">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-amber-50 text-gold-700 flex items-center justify-center border-2 border-gold-400 shadow-sm">
                     <Mail className="w-8 h-8" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    <h4 className="text-xl font-bold text-slate-900">
                       {t('enrollmentModal.emailSuccessTitle')}
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
                       {t('enrollmentModal.emailSuccessDesc')}
                     </p>
                   </div>
 
                   {/* Official Email Display Box */}
-                  <div className="p-3.5 rounded-2xl bg-sand-50 dark:bg-emerald-950/70 border border-slate-200 dark:border-emerald-800/80 text-start space-y-1.5 max-w-md mx-auto">
-                    <span className="text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">
+                  <div className="p-3.5 rounded-2xl bg-sand-50 border border-slate-200 text-start space-y-1.5 max-w-md mx-auto">
+                    <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
                       {t('enrollmentModal.officialEmailLabel')}
                     </span>
                     <a
                       href={`mailto:${foundationInfo.email}`}
-                      className="text-sm font-bold text-emerald-900 dark:text-emerald-300 hover:text-gold-700 dark:hover:text-gold-400 break-all flex items-center gap-1.5"
+                      className="text-sm font-bold text-emerald-900 hover:text-gold-700 break-all flex items-center gap-1.5"
                     >
-                      <Mail className="w-4 h-4 text-gold-600 dark:text-gold-400 shrink-0" />
+                      <Mail className="w-4 h-4 text-gold-600 shrink-0" />
                       <span>{foundationInfo.email}</span>
                     </a>
                   </div>
@@ -188,22 +188,22 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
 
                     <a
                       href={mailtoUrl}
-                      className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-emerald-900/60 dark:hover:bg-emerald-850 dark:text-emerald-100 font-semibold text-xs border border-slate-300 dark:border-emerald-700/60 transition-all"
+                      className="w-full sm:w-auto flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs border border-slate-300 transition-all"
                     >
-                      <Mail className="w-4 h-4 text-slate-700 dark:text-emerald-300 shrink-0" />
+                      <Mail className="w-4 h-4 text-slate-700 shrink-0" />
                       <span>{t('enrollmentModal.openDefaultMailBtn')}</span>
                     </a>
 
                     <button
                       type="button"
                       onClick={handleCopy}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 dark:bg-emerald-900/40 dark:hover:bg-emerald-800/50 dark:text-emerald-200 font-semibold text-xs border border-slate-300 dark:border-emerald-700/60 transition-all"
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 font-semibold text-xs border border-slate-300 transition-all"
                       title={t('enrollmentModal.copyApplicationBtn')}
                     >
                       {copied ? (
                         <>
-                          <Check className="w-4 h-4 text-emerald-700 dark:text-emerald-400" />
-                          <span className="text-emerald-700 dark:text-emerald-400 font-bold">{t('enrollmentModal.copied')}</span>
+                          <Check className="w-4 h-4 text-emerald-700" />
+                          <span className="text-emerald-700 font-bold">{t('enrollmentModal.copied')}</span>
                         </>
                       ) : (
                         <>
@@ -215,8 +215,8 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                   </div>
 
                   {/* WhatsApp Alternative Link */}
-                  <div className="pt-2 border-t border-slate-100 dark:border-emerald-900/80">
-                    <p className="text-[11px] text-slate-500 dark:text-slate-400 mb-2">
+                  <div className="pt-2 border-t border-slate-100">
+                    <p className="text-[11px] text-slate-500 mb-2">
                       {i18n.language === 'ur'
                         ? 'کیا آپ واٹس ایپ پر بھی بھیجنا چاہتے ہیں؟'
                         : i18n.language === 'ar'
@@ -227,23 +227,23 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 dark:text-emerald-300 hover:text-green-700 dark:hover:text-green-400 underline"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 hover:text-green-700 underline"
                     >
-                      <MessageCircle className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
+                      <MessageCircle className="w-3.5 h-3.5 text-green-600" />
                       <span>{t('enrollmentModal.submit')}</span>
                     </a>
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 dark:bg-emerald-900/70 text-emerald-700 dark:text-emerald-300 flex items-center justify-center border-2 border-emerald-500 shadow-sm">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center border-2 border-emerald-500 shadow-sm">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
                   <div className="space-y-1">
-                    <h4 className="text-xl font-bold text-slate-900 dark:text-white">
+                    <h4 className="text-xl font-bold text-slate-900">
                       {t('enrollmentModal.successTitle')}
                     </h4>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 max-w-md mx-auto leading-relaxed">
+                    <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
                       {t('enrollmentModal.successDesc')}
                     </p>
                   </div>
@@ -262,7 +262,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                   </div>
 
                   {/* Alternative Email Option */}
-                  <div className="pt-2 border-t border-slate-100 dark:border-emerald-900/80 text-xs text-slate-500 dark:text-slate-400">
+                  <div className="pt-2 border-t border-slate-100 text-xs text-slate-500">
                     <p className="mb-1.5">
                       {i18n.language === 'ur'
                         ? 'واٹس ایپ اوپن نہیں ہو سکا؟ ای میل کے ذریعے ارسال کریں:'
@@ -272,9 +272,9 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                     </p>
                     <a
                       href={mailtoUrl}
-                      className="inline-flex items-center gap-1.5 font-bold text-emerald-900 dark:text-emerald-300 hover:text-gold-700 dark:hover:text-gold-400 underline"
+                      className="inline-flex items-center gap-1.5 font-bold text-emerald-900 hover:text-gold-700 underline"
                     >
-                      <Mail className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400" />
+                      <Mail className="w-3.5 h-3.5 text-gold-600" />
                       <span>{foundationInfo.email}</span>
                     </a>
                   </div>
@@ -285,14 +285,14 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                 <button
                   type="button"
                   onClick={resetForm}
-                  className="px-5 py-2.5 rounded-xl border border-slate-200 dark:border-emerald-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-emerald-900/60 font-semibold text-xs transition-colors"
+                  className="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 font-semibold text-xs transition-colors"
                 >
                   {i18n.language === 'ur' ? 'نیا فارم بھریں' : i18n.language === 'ar' ? 'تعبئة استمارة أخرى' : 'Edit Application'}
                 </button>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-6 py-2.5 rounded-xl bg-emerald-950 dark:bg-emerald-800 text-white font-semibold text-xs hover:bg-emerald-900 dark:hover:bg-emerald-700 transition-colors shadow-sm"
+                  className="px-6 py-2.5 rounded-xl bg-emerald-950 text-white font-semibold text-xs hover:bg-emerald-900 transition-colors shadow-sm"
                 >
                   {t('enrollmentModal.closeBtn')}
                 </button>
@@ -304,20 +304,20 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               
               {/* Submission Channel Selection Tabs */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                   {t('enrollmentModal.methodLabel')}
                 </label>
-                <div className="grid grid-cols-2 gap-2.5 p-1 rounded-2xl bg-slate-100 dark:bg-emerald-950/80 border border-slate-200 dark:border-emerald-800/70">
+                <div className="grid grid-cols-2 gap-2.5 p-1 rounded-2xl bg-slate-100 border border-slate-200">
                   <button
                     type="button"
                     onClick={() => setSubmissionMethod('whatsapp')}
                     className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                       submissionMethod === 'whatsapp'
-                        ? 'bg-white dark:bg-emerald-900 text-emerald-950 dark:text-white shadow-sm border border-emerald-700/20 dark:border-emerald-600'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-white text-emerald-950 shadow-sm border border-emerald-700/20'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
-                    <MessageCircle className={`w-4 h-4 ${submissionMethod === 'whatsapp' ? 'text-green-600 dark:text-green-400' : 'text-slate-400'}`} />
+                    <MessageCircle className={`w-4 h-4 ${submissionMethod === 'whatsapp' ? 'text-green-600' : 'text-slate-400'}`} />
                     <span>{t('enrollmentModal.methodWhatsApp')}</span>
                   </button>
 
@@ -326,18 +326,18 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                     onClick={() => setSubmissionMethod('email')}
                     className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                       submissionMethod === 'email'
-                        ? 'bg-white dark:bg-emerald-900 text-emerald-950 dark:text-white shadow-sm border border-gold-500/30 dark:border-gold-500/50'
-                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                        ? 'bg-white text-emerald-950 shadow-sm border border-gold-500/30'
+                        : 'text-slate-600 hover:text-slate-900'
                     }`}
                   >
-                    <Mail className={`w-4 h-4 ${submissionMethod === 'email' ? 'text-gold-600 dark:text-gold-400' : 'text-slate-400'}`} />
+                    <Mail className={`w-4 h-4 ${submissionMethod === 'email' ? 'text-gold-600' : 'text-slate-400'}`} />
                     <span>{t('enrollmentModal.methodEmail')}</span>
                   </button>
                 </div>
 
                 {submissionMethod === 'email' && (
-                  <p className="text-[11px] text-emerald-800 dark:text-emerald-200 bg-emerald-50/80 dark:bg-emerald-950/90 border border-emerald-200/80 dark:border-emerald-800/80 rounded-xl p-2.5 mt-2 flex items-start gap-1.5">
-                    <IslamicStarDeco className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0 mt-0.5" />
+                  <p className="text-[11px] text-emerald-800 bg-emerald-50/80 border border-emerald-200/80 rounded-xl p-2.5 mt-2 flex items-start gap-1.5">
+                    <IslamicStarDeco className="w-3.5 h-3.5 text-gold-600 shrink-0 mt-0.5" />
                     <span>{t('enrollmentModal.emailNotice')}</span>
                   </p>
                 )}
@@ -345,18 +345,18 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
 
               {/* Select Course */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   {t('enrollmentModal.chooseCourse')}
                 </label>
                 <select
                   value={formData.courseId}
                   onChange={handleCourseChange}
-                  className="w-full px-4 py-2.5 text-sm bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:ring-2 focus:ring-emerald-700 dark:focus:ring-gold-500/50 focus:outline-none text-slate-900 dark:text-white font-medium"
+                  className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none text-slate-900 font-medium"
                 >
                   {coursesData.map((course) => {
                     const loc = getLocalizedCourse(course, i18n.language);
                     return (
-                      <option key={course.id} value={course.id} className="dark:bg-emerald-950 dark:text-white">
+                      <option key={course.id} value={course.id}>
                         {loc.title}
                       </option>
                     );
@@ -366,7 +366,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
 
               {/* Name */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   {t('enrollmentModal.fullName')} <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -375,20 +375,20 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder={t('enrollmentModal.namePlaceholder')}
-                  className="w-full px-4 py-2.5 text-sm bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:ring-2 focus:ring-emerald-700 dark:focus:ring-gold-500/50 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                  className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                 />
               </div>
 
               {/* Gender Cohort Choice */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   {t('enrollmentModal.learningCohort')}
                 </label>
                 <div className="grid grid-cols-2 gap-3">
                   <label className={`p-2.5 rounded-xl border text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 transition-all ${
                     formData.gender === 'brother'
-                      ? 'bg-emerald-50 dark:bg-emerald-900/70 border-emerald-700 dark:border-emerald-500 text-emerald-900 dark:text-emerald-200 shadow-sm'
-                      : 'border-slate-200 dark:border-emerald-800/80 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/30'
+                      ? 'bg-emerald-50 border-emerald-700 text-emerald-900 shadow-sm'
+                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}>
                     <input
                       type="radio"
@@ -403,8 +403,8 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
 
                   <label className={`p-2.5 rounded-xl border text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 transition-all ${
                     formData.gender === 'sister'
-                      ? 'bg-gold-50 dark:bg-amber-950/60 border-gold-600 dark:border-gold-500 text-gold-950 dark:text-gold-300 shadow-sm'
-                      : 'border-slate-200 dark:border-emerald-800/80 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-emerald-900/30'
+                      ? 'bg-gold-50 border-gold-600 text-gold-950 shadow-sm'
+                      : 'border-slate-200 text-slate-600 hover:bg-slate-50'
                   }`}>
                     <input
                       type="radio"
@@ -423,7 +423,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* Phone Number */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     {submissionMethod === 'whatsapp' ? (
                       <>
                         {t('enrollmentModal.phone')} <span className="text-red-500">*</span>
@@ -438,13 +438,13 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+92 300 0000000"
-                    className="w-full px-4 py-2.5 text-sm bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:ring-2 focus:ring-emerald-700 dark:focus:ring-gold-500/50 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                    className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                   />
                 </div>
 
                 {/* Email Address */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     {submissionMethod === 'email' ? (
                       <>
                         {t('enrollmentModal.emailRequired')} <span className="text-red-500">*</span>
@@ -459,14 +459,14 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder={t('enrollmentModal.emailPlaceholder')}
-                    className="w-full px-4 py-2.5 text-sm bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:ring-2 focus:ring-emerald-700 dark:focus:ring-gold-500/50 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                    className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                   />
                 </div>
               </div>
 
               {/* Additional Notes */}
               <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wider mb-1">
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                   {t('enrollmentModal.notes')}
                 </label>
                 <textarea
@@ -474,7 +474,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   placeholder={t('enrollmentModal.notesPlaceholder')}
-                  className="w-full px-4 py-2.5 text-sm bg-sand-50 dark:bg-emerald-950/60 border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:ring-2 focus:ring-emerald-700 dark:focus:ring-gold-500/50 focus:outline-none text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500"
+                  className="w-full px-4 py-2.5 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-700 focus:outline-none"
                 />
               </div>
 
@@ -501,7 +501,7 @@ export default function EnrollmentModal({ isOpen, onClose, defaultCourseSlug = "
 
               <div className="text-center">
                 <p className="text-[11px] text-slate-400 flex items-center justify-center gap-1">
-                  <Shield className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 shrink-0" />
+                  <Shield className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                   <span>{t('enrollmentModal.privacy')}</span>
                 </p>
               </div>

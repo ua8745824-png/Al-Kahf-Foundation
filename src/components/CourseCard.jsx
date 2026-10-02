@@ -23,7 +23,7 @@ export default function CourseCard({ course, onQuickEnroll }) {
   const whatsappInquiryUrl = `https://wa.me/${foundationInfo.whatsappClean}?text=${encodeURIComponent(getInquiryText())}`;
 
   return (
-    <div className="group bg-white dark:bg-emerald-950/75 rounded-2xl overflow-hidden border border-slate-200/90 dark:border-emerald-800/60 hover:border-emerald-700/60 dark:hover:border-gold-500/50 shadow-soft-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between text-start">
+    <div className="group bg-white rounded-2xl overflow-hidden border border-slate-200/90 hover:border-emerald-700/60 shadow-soft-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between text-start">
       
       {/* Top Banner / Image & Badges */}
       <div className="relative h-48 overflow-hidden bg-emerald-950">
@@ -59,23 +59,23 @@ export default function CourseCard({ course, onQuickEnroll }) {
       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
         
         <div className="space-y-2.5">
-          <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors leading-snug">
+          <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-900 transition-colors leading-snug">
             {locCourse.title}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-emerald-100/75 line-clamp-3 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
             {locCourse.shortDescription}
           </p>
         </div>
 
         {/* Course Meta Info */}
-        <div className="pt-3 border-t border-slate-100 dark:border-emerald-900/60 grid grid-cols-2 gap-2 text-xs text-slate-500 dark:text-emerald-300/70">
+        <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2 text-xs text-slate-500">
           <div className="flex items-center gap-1.5 truncate">
-            <Clock className="w-3.5 h-3.5 text-emerald-700 dark:text-gold-400 shrink-0" />
+            <Clock className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
             <span className="truncate">{locCourse.duration}</span>
           </div>
           <div className="flex items-center gap-1.5 truncate">
-            <Users className="w-3.5 h-3.5 text-emerald-700 dark:text-gold-400 shrink-0" />
+            <Users className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
             <span className="truncate">{locCourse.audience}</span>
           </div>
         </div>
@@ -84,7 +84,7 @@ export default function CourseCard({ course, onQuickEnroll }) {
         <div className="pt-2 flex items-center gap-2">
           <Link
             to={`/courses/${course.slug}`}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-semibold text-xs transition-all shadow-sm group-hover:shadow border border-emerald-800/60"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2.5 px-4 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-semibold text-xs transition-all shadow-sm group-hover:shadow"
           >
             <span>{t('courses.viewCourse')}</span>
             <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 shrink-0" />
@@ -94,10 +94,10 @@ export default function CourseCard({ course, onQuickEnroll }) {
             href={whatsappInquiryUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2.5 rounded-xl bg-green-50 dark:bg-emerald-900/60 hover:bg-green-100 dark:hover:bg-emerald-850 text-green-800 dark:text-emerald-200 border border-green-200 dark:border-emerald-700/60 transition-colors"
+            className="p-2.5 rounded-xl bg-green-50 hover:bg-green-100 text-green-800 border border-green-200 transition-colors"
             title={t('courses.inquireWhatsApp')}
           >
-            <MessageCircle className="w-4 h-4 text-green-700 dark:text-green-400" />
+            <MessageCircle className="w-4 h-4 text-green-700" />
           </a>
         </div>
 

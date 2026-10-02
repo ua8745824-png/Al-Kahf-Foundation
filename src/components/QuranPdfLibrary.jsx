@@ -47,7 +47,7 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
     <div className="space-y-8">
       
       {/* Category Filter & Search Bar */}
-      <div className="p-4 sm:p-6 rounded-2xl bg-white dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-800/80 shadow-soft-card flex flex-col md:flex-row items-center justify-between gap-4 transition-colors">
+      <div className="p-4 sm:p-6 rounded-2xl bg-white border border-emerald-900/10 shadow-soft-card flex flex-col md:flex-row items-center justify-between gap-4">
         
         {/* Category Tabs */}
         <div className="flex items-center gap-1.5 overflow-x-auto max-w-full pb-2 md:pb-0 w-full md:w-auto">
@@ -57,8 +57,8 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all ${
                 selectedCategory === cat.id
-                  ? 'bg-emerald-950 dark:bg-emerald-900 text-gold-300 shadow-md scale-[1.02]'
-                  : 'bg-emerald-50/70 dark:bg-emerald-950/60 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 text-emerald-950 dark:text-emerald-200 border border-emerald-900/10 dark:border-emerald-800/60'
+                  ? 'bg-emerald-950 text-gold-300 shadow-md scale-[1.02]'
+                  : 'bg-emerald-50/70 hover:bg-emerald-100 text-emerald-950 border border-emerald-900/10'
               }`}
             >
               {cat.label}
@@ -68,13 +68,13 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
 
         {/* Search Field */}
         <div className="relative w-full md:w-72">
-          <Search className="w-4 h-4 text-emerald-700/60 dark:text-emerald-400/60 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-emerald-700/60 absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search PDF by script, publisher..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-4 py-2 rounded-xl bg-sand-50 dark:bg-emerald-950/80 border border-emerald-900/15 dark:border-emerald-800/80 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white dark:focus:bg-emerald-950"
+            className="w-full pl-9 pr-4 py-2 rounded-xl bg-sand-50 border border-emerald-900/15 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-gold-400 focus:bg-white"
           />
         </div>
       </div>
@@ -138,38 +138,38 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
           {filteredPdfs.map((pdf) => (
             <div
               key={pdf.id}
-              className="rounded-3xl bg-white dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-850 shadow-soft-card hover:shadow-card-hover hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
+              className="rounded-3xl bg-white border border-emerald-900/10 shadow-soft-card hover:shadow-card-hover hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group"
             >
               
               {/* Card Header & Badge */}
               <div className="p-6 pb-4">
                 <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/80 text-emerald-950 dark:text-emerald-200 text-[10px] font-bold uppercase tracking-wider border border-emerald-200 dark:border-emerald-700/60">
+                  <span className="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-950 text-[10px] font-bold uppercase tracking-wider border border-emerald-200">
                     {pdf.script}
                   </span>
                   {pdf.badge && (
-                    <span className="px-2.5 py-1 rounded-full bg-gold-500/15 text-amber-900 dark:text-gold-300 text-[10px] font-bold border border-gold-500/30">
+                    <span className="px-2.5 py-1 rounded-full bg-gold-500/15 text-amber-900 text-[10px] font-bold border border-gold-500/30">
                       ★ {pdf.badge}
                     </span>
                   )}
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white font-serif leading-snug group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors">
+                <h3 className="text-lg font-bold text-slate-900 font-serif leading-snug group-hover:text-emerald-900 transition-colors">
                   {pdf.title}
                 </h3>
-                <p className="font-arabic text-base font-bold text-emerald-900 dark:text-gold-300 mt-1">
+                <p className="font-arabic text-base font-bold text-emerald-900 mt-1">
                   {pdf.arabicTitle}
                 </p>
 
-                <p className="text-xs text-slate-600 dark:text-slate-300 mt-3 line-clamp-3 leading-relaxed">
+                <p className="text-xs text-slate-600 mt-3 line-clamp-3 leading-relaxed">
                   {pdf.description}
                 </p>
 
                 {/* Key Features Pill List */}
-                <div className="mt-4 pt-4 border-t border-slate-100 dark:border-emerald-900/60 space-y-1.5">
+                <div className="mt-4 pt-4 border-t border-slate-100 space-y-1.5">
                   {pdf.features.slice(0, 3).map((f, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-200">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                       <span className="font-medium">{f}</span>
                     </div>
                   ))}
@@ -177,8 +177,8 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
               </div>
 
               {/* Card Footer & Actions */}
-              <div className="p-5 bg-sand-50/80 dark:bg-emerald-950/70 border-t border-slate-100 dark:border-emerald-900/60 mt-auto">
-                <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-medium mb-3">
+              <div className="p-5 bg-sand-50/80 border-t border-slate-100 mt-auto">
+                <div className="flex items-center justify-between text-[11px] text-slate-500 font-medium mb-3">
                   <span>📄 {pdf.pages}</span>
                   <span>📦 {pdf.size}</span>
                 </div>
@@ -186,9 +186,9 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
                 <div className="grid grid-cols-2 gap-2">
                   <button
                     onClick={() => setActivePdfModal(pdf)}
-                    className="w-full py-2 px-3 rounded-xl bg-white dark:bg-emerald-900/60 hover:bg-emerald-50 dark:hover:bg-emerald-850 text-emerald-950 dark:text-emerald-200 border border-emerald-900/20 dark:border-emerald-700/60 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                    className="w-full py-2 px-3 rounded-xl bg-white hover:bg-emerald-50 text-emerald-950 border border-emerald-900/20 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                   >
-                    <Eye className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400" />
+                    <Eye className="w-3.5 h-3.5 text-emerald-700" />
                     <span>Read Online</span>
                   </button>
 
@@ -196,7 +196,7 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
                     href={pdf.downloadUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-2 px-3 rounded-xl bg-emerald-900 hover:bg-emerald-850 dark:bg-emerald-800 dark:hover:bg-emerald-750 text-gold-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+                    className="w-full py-2 px-3 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-gold-300 text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
                   >
                     <Download className="w-3.5 h-3.5 text-gold-400" />
                     <span>Free Download</span>
@@ -210,15 +210,15 @@ export default function QuranPdfLibrary({ onOpenEnrollment }) {
       )}
 
       {/* Informational Guidance Box: How to choose the best Quran PDF */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-emerald-50 dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-800/80 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6 transition-colors">
+      <div className="p-6 sm:p-8 rounded-3xl bg-emerald-50 border border-emerald-900/10 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="space-y-2">
-          <div className="flex items-center gap-2 text-emerald-900 dark:text-gold-300">
-            <HelpCircle className="w-5 h-5 text-gold-600 dark:text-gold-400" />
+          <div className="flex items-center gap-2 text-emerald-900">
+            <HelpCircle className="w-5 h-5 text-gold-600" />
             <h4 className="text-base font-bold font-serif">
               Which Quran PDF format should you choose?
             </h4>
           </div>
-          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-slate-700 leading-relaxed max-w-3xl">
             • <strong>Madani 15-Line Mushaf:</strong> Recommended worldwide for memorization (Hifz) and standard daily Tilawat.<br />
             • <strong>Color-Coded Tajweed Mushaf:</strong> Best for students wanting to master proper pronunciation and stopping rules.<br />
             • <strong>Indo-Pak 16-Line & 15-Line:</strong> Ideal for learners accustomed to South Asian Nastaliq script.

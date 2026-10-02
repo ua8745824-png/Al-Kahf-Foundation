@@ -18,12 +18,7 @@
     "contact": "Contact",
     "enrollNow": "Enroll Now",
     "language": "Language",
-    "menu": "Menu Navigation",
-    "theme": "Theme",
-    "themeLight": "Light Mode",
-    "themeDark": "Dark Mode",
-    "themeSystem": "System Theme",
-    "toggleTheme": "Toggle Theme"
+    "menu": "Menu Navigation"
   },
   "hadithBanner": {
     "wisdomLabel": "Prophetic Wisdom:",

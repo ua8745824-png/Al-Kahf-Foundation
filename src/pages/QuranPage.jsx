@@ -75,7 +75,7 @@ export default function QuranPage({ onOpenEnrollment }) {
   ];
 
   return (
-    <div className="min-h-screen bg-sand-50/50 dark:bg-[#02180d] pb-20 transition-colors duration-300">
+    <div className="min-h-screen bg-sand-50/50 pb-20">
       
       {/* SEO Tags */}
       <SEO
@@ -166,8 +166,8 @@ export default function QuranPage({ onOpenEnrollment }) {
             onClick={() => setActiveTab('mushaf')}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap shadow-sm ${
               activeTab === 'mushaf'
-                ? 'bg-emerald-950 dark:bg-emerald-900 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
-                : 'bg-white dark:bg-emerald-950/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/50 text-emerald-950 dark:text-emerald-200 border border-emerald-900/15 dark:border-emerald-800/60'
+                ? 'bg-emerald-950 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
+                : 'bg-white hover:bg-emerald-50 text-emerald-950 border border-emerald-900/15'
             }`}
           >
             <BookOpen className="w-4 h-4 text-gold-500" />
@@ -178,8 +178,8 @@ export default function QuranPage({ onOpenEnrollment }) {
             onClick={() => setActiveTab('surahs')}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap shadow-sm ${
               activeTab === 'surahs'
-                ? 'bg-emerald-950 dark:bg-emerald-900 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
-                : 'bg-white dark:bg-emerald-950/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/50 text-emerald-950 dark:text-emerald-200 border border-emerald-900/15 dark:border-emerald-800/60'
+                ? 'bg-emerald-950 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
+                : 'bg-white hover:bg-emerald-50 text-emerald-950 border border-emerald-900/15'
             }`}
           >
             <Headphones className="w-4 h-4 text-gold-500" />
@@ -190,8 +190,8 @@ export default function QuranPage({ onOpenEnrollment }) {
             onClick={() => setActiveTab('pdf')}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap shadow-sm ${
               activeTab === 'pdf'
-                ? 'bg-emerald-950 dark:bg-emerald-900 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
-                : 'bg-white dark:bg-emerald-950/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/50 text-emerald-950 dark:text-emerald-200 border border-emerald-900/15 dark:border-emerald-800/60'
+                ? 'bg-emerald-950 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
+                : 'bg-white hover:bg-emerald-50 text-emerald-950 border border-emerald-900/15'
             }`}
           >
             <Download className="w-4 h-4 text-gold-500" />
@@ -202,8 +202,8 @@ export default function QuranPage({ onOpenEnrollment }) {
             onClick={() => setActiveTab('directory')}
             className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap shadow-sm ${
               activeTab === 'directory'
-                ? 'bg-emerald-950 dark:bg-emerald-900 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
-                : 'bg-white dark:bg-emerald-950/60 hover:bg-emerald-50 dark:hover:bg-emerald-900/50 text-emerald-950 dark:text-emerald-200 border border-emerald-900/15 dark:border-emerald-800/60'
+                ? 'bg-emerald-950 text-gold-300 shadow-emerald-950/20 shadow-md border-2 border-gold-500/50 scale-[1.02]'
+                : 'bg-white hover:bg-emerald-50 text-emerald-950 border border-emerald-900/15'
             }`}
           >
             <Layers className="w-4 h-4 text-gold-500" />
@@ -244,12 +244,12 @@ export default function QuranPage({ onOpenEnrollment }) {
           <div className="space-y-6">
             
             {/* Search Box */}
-            <div className="p-4 sm:p-6 rounded-3xl bg-white dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-800/80 shadow-soft-card flex flex-col sm:flex-row items-center justify-between gap-4 transition-colors">
+            <div className="p-4 sm:p-6 rounded-3xl bg-white border border-emerald-900/10 shadow-soft-card flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
-                <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900 dark:text-white">
+                <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900">
                   Index of All 114 Holy Surahs
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300">
+                <p className="text-xs text-slate-600">
                   Click any Surah to open directly in the Madani Mushaf or read with translations and audio.
                 </p>
               </div>
@@ -261,7 +261,7 @@ export default function QuranPage({ onOpenEnrollment }) {
                   placeholder="Search Surah by name or #..."
                   value={surahSearch}
                   onChange={(e) => setSurahSearch(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 rounded-xl bg-sand-50 dark:bg-emerald-950/80 border border-slate-200 dark:border-emerald-800/80 text-xs text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                  className="w-full pl-9 pr-4 py-2 rounded-xl bg-sand-50 border border-slate-200 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-gold-400"
                 />
               </div>
             </div>
@@ -271,7 +271,7 @@ export default function QuranPage({ onOpenEnrollment }) {
               {filteredSurahs.map((surah) => (
                 <div
                   key={surah.number}
-                  className="p-4 rounded-2xl bg-white dark:bg-[#032012] border border-emerald-900/10 dark:border-emerald-850 hover:border-gold-500/40 shadow-soft-card hover:shadow-card-hover transition-all flex flex-col justify-between group"
+                  className="p-4 rounded-2xl bg-white border border-emerald-900/10 hover:border-gold-500/40 shadow-soft-card hover:shadow-card-hover transition-all flex flex-col justify-between group"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex items-center gap-2.5">
@@ -279,21 +279,21 @@ export default function QuranPage({ onOpenEnrollment }) {
                         {surah.number}
                       </span>
                       <div>
-                        <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors">
+                        <h4 className="text-sm font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
                           {surah.name}
                         </h4>
-                        <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                        <p className="text-[11px] text-slate-500">
                           {surah.englishName}
                         </p>
                       </div>
                     </div>
 
-                    <span className="font-arabic font-bold text-lg text-emerald-900 dark:text-gold-300">
+                    <span className="font-arabic font-bold text-lg text-emerald-900">
                       {surah.arabicName}
                     </span>
                   </div>
 
-                  <div className="mt-4 pt-3 border-t border-slate-100 dark:border-emerald-900/70 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+                  <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
                     <span>{surah.revelationPlace} • {surah.versesCount} Ayahs</span>
                     <span>Page {surah.startPage}</span>
                   </div>
@@ -302,13 +302,13 @@ export default function QuranPage({ onOpenEnrollment }) {
                   <div className="grid grid-cols-2 gap-2 mt-3 pt-2">
                     <button
                       onClick={() => handleOpenSurahInMushaf(surah.startPage)}
-                      className="py-1.5 px-2 rounded-lg bg-emerald-50 dark:bg-emerald-900/60 hover:bg-emerald-100 dark:hover:bg-emerald-850 text-emerald-950 dark:text-emerald-200 text-[11px] font-bold text-center transition-colors"
+                      className="py-1.5 px-2 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-950 text-[11px] font-bold text-center transition-colors"
                     >
                       📖 Mushaf Page
                     </button>
                     <button
                       onClick={() => handleOpenSurahInReader(surah.number)}
-                      className="py-1.5 px-2 rounded-lg bg-emerald-900 dark:bg-emerald-800 hover:bg-emerald-850 dark:hover:bg-emerald-700 text-gold-300 text-[11px] font-bold text-center transition-colors"
+                      className="py-1.5 px-2 rounded-lg bg-emerald-900 hover:bg-emerald-850 text-gold-300 text-[11px] font-bold text-center transition-colors"
                     >
                       📜 Translation & Audio
                     </button>

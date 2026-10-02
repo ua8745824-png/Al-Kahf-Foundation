@@ -107,23 +107,23 @@ export default function Contact({ preselectedCourse = "" }) {
   };
 
   return (
-    <section className="py-20 bg-sand-50 dark:bg-[#02180d] relative overflow-hidden transition-colors duration-150" id="contact-section">
+    <section className="py-20 bg-sand-50 relative overflow-hidden" id="contact-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wider border border-emerald-200/40 dark:border-emerald-700/50">
-            <MessageCircle className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold uppercase tracking-wider">
+            <MessageCircle className="w-3.5 h-3.5 text-gold-600 shrink-0" />
             <span>{t('contact.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-serif">
             {t('contact.heading')}
           </h2>
 
           <IslamicDivider showArabic={false} />
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-emerald-100/80 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             {t('contact.description')}
           </p>
         </div>
@@ -168,21 +168,21 @@ export default function Contact({ preselectedCourse = "" }) {
             </div>
 
             {/* Email Card */}
-            <div className="bg-white dark:bg-emerald-950/70 rounded-3xl p-7 border border-slate-200 dark:border-emerald-800/60 shadow-soft-card space-y-4">
+            <div className="bg-white rounded-3xl p-7 border border-slate-200 shadow-soft-card space-y-4">
               <div className="flex items-center justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-amber-50 dark:bg-gold-500/20 text-gold-700 dark:text-gold-300 flex items-center justify-center border border-gold-200 dark:border-gold-500/30 shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center border border-gold-200 shrink-0">
                   <Mail className="w-6 h-6" />
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-wider bg-slate-100 dark:bg-emerald-900/80 text-slate-700 dark:text-emerald-300 px-2.5 py-1 rounded-full border border-slate-200/60 dark:border-emerald-700/60">
+                <span className="text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700 px-2.5 py-1 rounded-full">
                   {t('contact.emailCardBadge')}
                 </span>
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                <h3 className="text-lg font-bold text-slate-900">
                   {t('contact.emailCardTitle')}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-emerald-200/70 mt-1 leading-relaxed">
+                <p className="text-xs text-slate-500 mt-1 leading-relaxed">
                   {t('contact.emailCardDesc')}
                 </p>
               </div>
@@ -190,7 +190,7 @@ export default function Contact({ preselectedCourse = "" }) {
               <div className="pt-1">
                 <a
                   href={foundationInfo.emailUrl}
-                  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-900 dark:text-gold-300 hover:text-gold-700 dark:hover:text-gold-200 transition-colors break-all"
+                  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-900 hover:text-gold-700 transition-colors break-all"
                 >
                   <span>{foundationInfo.email}</span>
                   <ExternalLink className="w-4 h-4 shrink-0" />
@@ -199,8 +199,8 @@ export default function Contact({ preselectedCourse = "" }) {
             </div>
 
             {/* Social Media Channels Card */}
-            <div className="bg-white dark:bg-emerald-950/70 rounded-3xl p-6 border border-slate-200 dark:border-emerald-800/60 shadow-soft-card space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-emerald-400/80">
+            <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft-card space-y-3">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">
                 {t('contact.socialTitle')}
               </h4>
               <div className="grid grid-cols-2 gap-2 text-xs">
@@ -208,31 +208,31 @@ export default function Contact({ preselectedCourse = "" }) {
                   href={foundationInfo.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-100 font-semibold flex items-center gap-2 hover:bg-emerald-100 dark:hover:bg-emerald-850 transition-colors border border-emerald-200/60 dark:border-emerald-700/60"
+                  className="p-2.5 rounded-xl bg-emerald-50 text-emerald-900 font-semibold flex items-center gap-2 hover:bg-emerald-100 transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-green-600 dark:text-green-400 shrink-0" />
+                  <MessageCircle className="w-4 h-4 text-green-600 shrink-0" />
                   <span>WhatsApp ({t('contact.activeLabel')})</span>
                 </a>
 
                 <a
                   href={foundationInfo.emailUrl}
-                  className="p-2.5 rounded-xl bg-slate-50 dark:bg-emerald-900/40 text-slate-800 dark:text-emerald-100 font-semibold flex items-center gap-2 hover:bg-slate-100 dark:hover:bg-emerald-850 transition-colors border border-slate-200/60 dark:border-emerald-700/60"
+                  className="p-2.5 rounded-xl bg-slate-50 text-slate-800 font-semibold flex items-center gap-2 hover:bg-slate-100 transition-colors"
                 >
-                  <Mail className="w-4 h-4 text-gold-600 dark:text-gold-400 shrink-0" />
+                  <Mail className="w-4 h-4 text-gold-600 shrink-0" />
                   <span>Email ({t('contact.activeLabel')})</span>
                 </a>
 
-                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-emerald-950/80 text-slate-400 dark:text-emerald-400/50 font-medium flex items-center gap-2 cursor-not-allowed opacity-75 border border-transparent dark:border-emerald-900/40">
-                  <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-emerald-700" />
+                <div className="p-2.5 rounded-xl bg-slate-50 text-slate-400 font-medium flex items-center gap-2 cursor-not-allowed opacity-75">
+                  <span className="w-2 h-2 rounded-full bg-slate-300" />
                   <span>Instagram ({t('contact.soonLabel')})</span>
                 </div>
 
-                <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-emerald-950/80 text-slate-400 dark:text-emerald-400/50 font-medium flex items-center gap-2 cursor-not-allowed opacity-75 border border-transparent dark:border-emerald-900/40">
-                  <span className="w-2 h-2 rounded-full bg-slate-300 dark:bg-emerald-700" />
+                <div className="p-2.5 rounded-xl bg-slate-50 text-slate-400 font-medium flex items-center gap-2 cursor-not-allowed opacity-75">
+                  <span className="w-2 h-2 rounded-full bg-slate-300" />
                   <span>TikTok ({t('contact.soonLabel')})</span>
                 </div>
               </div>
-              <p className="text-[11px] text-slate-400 dark:text-emerald-400/70 italic">
+              <p className="text-[11px] text-slate-400 italic">
                 {t('contact.telegramNotice')}
               </p>
             </div>
@@ -240,26 +240,26 @@ export default function Contact({ preselectedCourse = "" }) {
           </div>
 
           {/* Right Column: Interactive Registration & Contact Form */}
-          <div className="lg:col-span-7 bg-white dark:bg-emerald-950/75 rounded-3xl p-7 sm:p-9 border border-slate-200 dark:border-emerald-800/60 shadow-soft-card">
+          <div className="lg:col-span-7 bg-white rounded-3xl p-7 sm:p-9 border border-slate-200 shadow-soft-card">
             
             <div className="space-y-2 mb-6">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white font-serif">
+              <h3 className="text-xl font-bold text-slate-900 font-serif">
                 {t('contact.formTitle')}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-emerald-200/70 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed">
                 {t('contact.formDesc')}
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-6 rounded-2xl bg-emerald-50 dark:bg-emerald-900/50 border border-emerald-200 dark:border-emerald-700/60 text-center space-y-4 animate-fade-in">
+              <div className="p-6 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-4 animate-fade-in">
                 <div className="w-12 h-12 mx-auto rounded-full bg-emerald-600 text-white flex items-center justify-center">
                   <CheckCircle2 className="w-7 h-7" />
                 </div>
-                <h4 className="text-lg font-bold text-emerald-950 dark:text-gold-300">
+                <h4 className="text-lg font-bold text-emerald-950">
                   {submittedMethod === 'email' ? t('contact.emailSuccessTitle') : t('contact.successTitle')}
                 </h4>
-                <p className="text-xs sm:text-sm text-emerald-800 dark:text-emerald-200 leading-relaxed max-w-md mx-auto">
+                <p className="text-xs sm:text-sm text-emerald-800 leading-relaxed max-w-md mx-auto">
                   {submittedMethod === 'email' ? t('contact.emailSuccessDesc') : t('contact.successDesc')}
                 </p>
 
@@ -277,9 +277,9 @@ export default function Contact({ preselectedCourse = "" }) {
                     <button
                       type="button"
                       onClick={handleCopy}
-                      className="px-4 py-2 rounded-xl bg-white dark:bg-emerald-900 border border-slate-300 dark:border-emerald-700 text-slate-700 dark:text-slate-200 text-xs font-semibold inline-flex items-center gap-1.5 hover:bg-slate-50 dark:hover:bg-emerald-850"
+                      className="px-4 py-2 rounded-xl bg-white border border-slate-300 text-slate-700 text-xs font-semibold inline-flex items-center gap-1.5 hover:bg-slate-50"
                     >
-                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-gold-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
                       <span>{copied ? t('enrollmentModal.copied') : t('enrollmentModal.copyApplicationBtn')}</span>
                     </button>
                   </div>
@@ -288,7 +288,7 @@ export default function Contact({ preselectedCourse = "" }) {
                 <div className="pt-2">
                   <button
                     onClick={() => { setSubmitted(false); setCopied(false); }}
-                    className="text-xs font-bold text-emerald-900 dark:text-gold-400 underline"
+                    className="text-xs font-bold text-emerald-900 underline"
                   >
                     {t('contact.sendAnother')}
                   </button>
@@ -298,7 +298,7 @@ export default function Contact({ preselectedCourse = "" }) {
               <form onSubmit={handleSubmit} className="space-y-4">
                 
                 {error && (
-                  <div className="p-3 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/60 text-red-700 dark:text-red-300 text-xs flex items-center gap-2">
+                  <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{error}</span>
                   </div>
@@ -306,20 +306,20 @@ export default function Contact({ preselectedCourse = "" }) {
 
                 {/* Submission Channel Selection */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     {t('contact.submitMethod')}
                   </label>
-                  <div className="grid grid-cols-2 gap-2.5 p-1 rounded-2xl bg-sand-100 dark:bg-emerald-900/50 border border-slate-200 dark:border-emerald-800/60">
+                  <div className="grid grid-cols-2 gap-2.5 p-1 rounded-2xl bg-sand-100 border border-slate-200">
                     <button
                       type="button"
                       onClick={() => setSubmissionMethod('whatsapp')}
                       className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                         submissionMethod === 'whatsapp'
-                          ? 'bg-white dark:bg-emerald-850 text-emerald-950 dark:text-gold-300 shadow-sm border border-emerald-700/20 dark:border-gold-500/40'
-                          : 'text-slate-600 dark:text-emerald-200/70 hover:text-slate-900 dark:hover:text-white'
+                          ? 'bg-white text-emerald-950 shadow-sm border border-emerald-700/20'
+                          : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
-                      <MessageCircle className={`w-4 h-4 ${submissionMethod === 'whatsapp' ? 'text-green-600 dark:text-green-400' : 'text-slate-400 dark:text-emerald-400/60'}`} />
+                      <MessageCircle className={`w-4 h-4 ${submissionMethod === 'whatsapp' ? 'text-green-600' : 'text-slate-400'}`} />
                       <span>{t('contact.submitWhatsApp')}</span>
                     </button>
 
@@ -328,11 +328,11 @@ export default function Contact({ preselectedCourse = "" }) {
                       onClick={() => setSubmissionMethod('email')}
                       className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 ${
                         submissionMethod === 'email'
-                          ? 'bg-white dark:bg-emerald-850 text-emerald-950 dark:text-gold-300 shadow-sm border border-gold-500/30 dark:border-gold-500/40'
-                          : 'text-slate-600 dark:text-emerald-200/70 hover:text-slate-900 dark:hover:text-white'
+                          ? 'bg-white text-emerald-950 shadow-sm border border-gold-500/30'
+                          : 'text-slate-600 hover:text-slate-900'
                       }`}
                     >
-                      <Mail className={`w-4 h-4 ${submissionMethod === 'email' ? 'text-gold-600 dark:text-gold-400' : 'text-slate-400 dark:text-emerald-400/60'}`} />
+                      <Mail className={`w-4 h-4 ${submissionMethod === 'email' ? 'text-gold-600' : 'text-slate-400'}`} />
                       <span>{t('contact.submitEmail')}</span>
                     </button>
                   </div>
@@ -340,7 +340,7 @@ export default function Contact({ preselectedCourse = "" }) {
 
                 {/* Name */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     {t('contact.nameLabel')} <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -350,14 +350,14 @@ export default function Contact({ preselectedCourse = "" }) {
                     onChange={handleChange}
                     required
                     placeholder={t('contact.namePlaceholder')}
-                    className="w-full px-4 py-3 text-sm bg-sand-50 dark:bg-emerald-900/40 border border-slate-200 dark:border-emerald-800/80 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-emerald-300/40 focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 transition-all"
+                    className="w-full px-4 py-3 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 transition-all"
                   />
                 </div>
 
                 {/* Phone & Email Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                       {t('contact.phoneLabel')} {submissionMethod === 'whatsapp' && <span className="text-red-500">*</span>}
                     </label>
                     <input
@@ -367,12 +367,12 @@ export default function Contact({ preselectedCourse = "" }) {
                       onChange={handleChange}
                       required={submissionMethod === 'whatsapp'}
                       placeholder={t('contact.phonePlaceholder')}
-                      className="w-full px-4 py-3 text-sm bg-sand-50 dark:bg-emerald-900/40 border border-slate-200 dark:border-emerald-800/80 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-emerald-300/40 focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 transition-all"
+                      className="w-full px-4 py-3 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                    <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                       {t('contact.emailLabel')} {submissionMethod === 'email' && <span className="text-red-500">*</span>}
                     </label>
                     <input
@@ -382,27 +382,27 @@ export default function Contact({ preselectedCourse = "" }) {
                       onChange={handleChange}
                       required={submissionMethod === 'email'}
                       placeholder={t('contact.emailPlaceholder')}
-                      className="w-full px-4 py-3 text-sm bg-sand-50 dark:bg-emerald-900/40 border border-slate-200 dark:border-emerald-800/80 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-emerald-300/40 focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 transition-all"
+                      className="w-full px-4 py-3 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 transition-all"
                     />
                   </div>
                 </div>
 
                 {/* Select Course */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     {t('contact.courseLabel')}
                   </label>
                   <select
                     name="course"
                     value={formData.course}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 text-sm bg-sand-50 dark:bg-emerald-900/40 border border-slate-200 dark:border-emerald-800/80 rounded-xl text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 transition-all"
+                    className="w-full px-4 py-3 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 transition-all text-slate-800"
                   >
-                    <option value="" className="dark:bg-emerald-950 dark:text-white">{t('contact.courseDefault')}</option>
+                    <option value="">{t('contact.courseDefault')}</option>
                     {coursesData.map((c) => {
                       const loc = getLocalizedCourse(c, i18n.language);
                       return (
-                        <option key={c.id} value={loc.title} className="dark:bg-emerald-950 dark:text-white">
+                        <option key={c.id} value={loc.title}>
                           {loc.title}
                         </option>
                       );
@@ -412,7 +412,7 @@ export default function Contact({ preselectedCourse = "" }) {
 
                 {/* Message */}
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 dark:text-emerald-200 uppercase tracking-wider mb-1.5">
+                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
                     {t('contact.messageLabel')}
                   </label>
                   <textarea
@@ -421,7 +421,7 @@ export default function Contact({ preselectedCourse = "" }) {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder={t('contact.messagePlaceholder')}
-                    className="w-full px-4 py-3 text-sm bg-sand-50 dark:bg-emerald-900/40 border border-slate-200 dark:border-emerald-800/80 rounded-xl text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-emerald-300/40 focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 transition-all"
+                    className="w-full px-4 py-3 text-sm bg-sand-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 transition-all"
                   ></textarea>
                 </div>
 
@@ -430,7 +430,7 @@ export default function Contact({ preselectedCourse = "" }) {
                   {submissionMethod === 'email' ? (
                     <button
                       type="submit"
-                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-850 hover:to-emerald-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group border border-gold-500/30"
+                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-850 hover:to-emerald-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group"
                     >
                       <Mail className="w-4 h-4 text-gold-400 group-hover:scale-110 transition-transform" />
                       <span>{t('contact.submitEmail')}</span>
@@ -438,7 +438,7 @@ export default function Contact({ preselectedCourse = "" }) {
                   ) : (
                     <button
                       type="submit"
-                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-850 hover:to-emerald-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group border border-gold-500/30"
+                      className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-emerald-900 to-emerald-950 hover:from-emerald-850 hover:to-emerald-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 group"
                     >
                       <Send className="w-4 h-4 text-gold-400 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-transform" />
                       <span>{t('contact.submitWhatsApp')}</span>

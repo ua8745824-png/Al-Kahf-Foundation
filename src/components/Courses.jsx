@@ -37,23 +37,23 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
   const displayedCourses = limit ? filteredCourses.slice(0, limit) : filteredCourses;
 
   return (
-    <section className="py-20 bg-sand-50 dark:bg-[#02180d] relative overflow-hidden transition-colors duration-150" id="courses-section">
+    <section className="py-20 bg-sand-50 relative overflow-hidden" id="courses-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wider border border-emerald-200/40 dark:border-emerald-700/50">
-            <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
             <span>{t('courses.badge')} ({coursesData.length})</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-serif">
             {t('courses.catalogHeading')}
           </h2>
 
           <IslamicDivider showArabic={false} />
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-emerald-100/80 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             {t('courses.subheading')}
           </p>
         </div>
@@ -77,15 +77,15 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
                       onClick={() => setSelectedCategory(category)}
                       className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 ${
                         isSelected
-                          ? 'bg-emerald-900 dark:bg-emerald-850 text-gold-300 shadow-md border border-gold-500/40 font-bold scale-[1.02]'
-                          : 'bg-white dark:bg-emerald-950/70 text-slate-700 dark:text-emerald-100/90 hover:bg-slate-100 dark:hover:bg-emerald-900/60 border border-slate-200/90 dark:border-emerald-800/60'
+                          ? 'bg-emerald-900 text-gold-300 shadow-md border border-gold-500/40 font-bold scale-[1.02]'
+                          : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/90'
                       }`}
                     >
                       <span>{localizedCatName}</span>
                       <span className={`px-1.5 py-0.5 rounded-md text-[10px] font-bold ${
                         isSelected
-                          ? 'bg-emerald-850 dark:bg-emerald-900 text-gold-400'
-                          : 'bg-slate-100 dark:bg-emerald-900/80 text-slate-500 dark:text-emerald-300/80'
+                          ? 'bg-emerald-850 text-gold-400'
+                          : 'bg-slate-100 text-slate-500'
                       }`}>
                         {count}
                       </span>
@@ -96,18 +96,18 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
 
               {/* Live Search Box */}
               <div className="relative w-full lg:w-80">
-                <Search className="w-4 h-4 text-slate-400 dark:text-emerald-400/60 absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <Search className="w-4 h-4 text-slate-400 absolute start-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder={t('courses.searchPlaceholder')}
-                  className="w-full ps-10 pe-12 py-2.5 text-xs sm:text-sm bg-white dark:bg-emerald-950/80 text-slate-900 dark:text-white border border-slate-200 dark:border-emerald-800/80 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 dark:focus:ring-gold-500/40 focus:border-emerald-700 dark:focus:border-gold-500/60 shadow-sm"
+                  className="w-full ps-10 pe-12 py-2.5 text-xs sm:text-sm bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/50 focus:border-emerald-700 shadow-sm"
                 />
                 {searchQuery && (
                   <button
                     onClick={() => setSearchQuery("")}
-                    className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 dark:text-emerald-400 dark:hover:text-gold-300 font-medium"
+                    className="absolute end-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-600 font-medium"
                   >
                     {t('courses.searchClear')}
                   </button>
@@ -117,15 +117,15 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
             </div>
 
             {/* Results Count Banner */}
-            <div className="flex items-center justify-between text-xs text-slate-500 dark:text-emerald-300/80 px-1">
+            <div className="flex items-center justify-between text-xs text-slate-500 px-1">
               <span>
                 {t('courses.showing')} <strong>{displayedCourses.length}</strong> {t('courses.of')} <strong>{coursesData.length}</strong> {t('courses.coursesIn')}{' '}
-                <strong className="text-emerald-900 dark:text-gold-300">{getLocalizedCategoryName(selectedCategory, i18n.language)}</strong>
+                <strong>{getLocalizedCategoryName(selectedCategory, i18n.language)}</strong>
               </span>
               {selectedCategory !== "All Courses" && (
                 <button
                   onClick={() => setSelectedCategory("All Courses")}
-                  className="text-emerald-800 dark:text-gold-400 font-bold hover:underline"
+                  className="text-emerald-800 font-bold hover:underline"
                 >
                   {t('courses.showAll')}
                 </button>
@@ -146,14 +146,14 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
               />
             ))
           ) : (
-            <div className="col-span-full py-16 text-center bg-white dark:bg-emerald-950/70 rounded-3xl border border-slate-200 dark:border-emerald-850/60 p-8 space-y-4 shadow-soft-card">
-              <div className="w-12 h-12 mx-auto rounded-2xl bg-amber-50 dark:bg-gold-500/20 text-gold-700 dark:text-gold-300 flex items-center justify-center">
+            <div className="col-span-full py-16 text-center bg-white rounded-3xl border border-slate-200 p-8 space-y-4 shadow-soft-card">
+              <div className="w-12 h-12 mx-auto rounded-2xl bg-amber-50 text-gold-700 flex items-center justify-center">
                 <BookOpen className="w-6 h-6" />
               </div>
-              <p className="text-slate-700 dark:text-white font-bold text-base">
+              <p className="text-slate-700 font-bold text-base">
                 {t('courses.noFound')} &ldquo;{searchQuery}&rdquo;
               </p>
-              <p className="text-xs text-slate-500 dark:text-emerald-200/70 max-w-sm mx-auto">
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
                 {t('courses.noFoundSub')}
               </p>
               <button
@@ -161,7 +161,7 @@ export default function Courses({ limit, showFilters = true, onQuickEnroll, init
                   setSelectedCategory("All Courses");
                   setSearchQuery("");
                 }}
-                className="px-5 py-2.5 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white text-xs font-bold shadow transition-all border border-gold-500/30"
+                className="px-5 py-2.5 rounded-xl bg-emerald-900 text-white text-xs font-bold shadow hover:bg-emerald-850 transition-all"
               >
                 {t('courses.resetFilters')}
               </button>

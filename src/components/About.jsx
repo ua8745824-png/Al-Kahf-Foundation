@@ -48,14 +48,14 @@ export default function About() {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-[#032012] relative overflow-hidden transition-colors duration-150">
+    <section className="py-20 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
           
           {/* Left Column: Visual Image with Islamic Frame & Accents */}
           <div className="lg:col-span-5 relative order-2 lg:order-1">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-sand-100 dark:border-emerald-850/60 group">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-sand-100 group">
               <img
                 src="/images/about-mosque.jpg"
                 alt="Al Kahf Foundation Educational Sanctuary"
@@ -76,13 +76,13 @@ export default function About() {
             </div>
 
             {/* Subtle Floating Stat Badge */}
-            <div className="absolute -top-4 ltr:-left-4 rtl:-right-4 sm:-top-6 sm:ltr:-left-6 sm:rtl:-right-6 bg-white dark:bg-emerald-950 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-gold-500/30 hidden sm:flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gold-100 dark:bg-gold-500/20 text-gold-700 dark:text-gold-300 flex items-center justify-center font-bold">
+            <div className="absolute -top-4 ltr:-left-4 rtl:-right-4 sm:-top-6 sm:ltr:-left-6 sm:rtl:-right-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden sm:flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center font-bold">
                 <ShieldCheck className="w-5 h-5" />
               </div>
               <div>
-                <p className="text-xs text-slate-500 dark:text-emerald-300/80 font-medium">{t('about.qualityLabel')}</p>
-                <p className="text-sm font-bold text-slate-900 dark:text-white">{t('about.qualityValue')}</p>
+                <p className="text-xs text-slate-500 font-medium">{t('about.qualityLabel')}</p>
+                <p className="text-sm font-bold text-slate-900">{t('about.qualityValue')}</p>
               </div>
             </div>
           </div>
@@ -91,23 +91,23 @@ export default function About() {
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2 text-start">
             
             <div className="space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wider border border-emerald-200/60 dark:border-emerald-700/60">
-                <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs font-semibold uppercase tracking-wider border border-emerald-200/60">
+                <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
                 <span>{t('about.badge')}</span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
+              <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-serif">
                 {t('about.heading')}
               </h2>
             </div>
 
-            <p className="text-slate-600 dark:text-emerald-100/80 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               {t('about.descParagraph')}
             </p>
 
             {/* 9 Knowledge Pillars Grid */}
             <div className="space-y-3 pt-2">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-950 dark:text-gold-300 flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-gold-600 dark:text-gold-400 shrink-0" />
+              <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-950 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-gold-600 shrink-0" />
                 <span>{t('about.disciplinesHeading')}</span>
               </h3>
 
@@ -115,13 +115,13 @@ export default function About() {
                 {pillars.map((pillar) => (
                   <div
                     key={pillar.name}
-                    className="p-3 rounded-xl bg-sand-50 dark:bg-emerald-950/60 border border-slate-200/80 dark:border-emerald-800/50 hover:border-emerald-700 dark:hover:border-gold-500/50 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/40 transition-all text-start"
+                    className="p-3 rounded-xl bg-sand-50 border border-slate-200/80 hover:border-emerald-700 hover:bg-emerald-50/50 transition-all text-start"
                   >
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900 dark:text-slate-100">
-                      <CheckCircle className="w-3.5 h-3.5 text-emerald-700 dark:text-gold-400 shrink-0" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-900">
+                      <CheckCircle className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
                       <span className="truncate">{pillar.name}</span>
                     </div>
-                    <p className="text-[11px] text-slate-500 dark:text-emerald-300/70 mt-1 line-clamp-1">
+                    <p className="text-[11px] text-slate-500 mt-1 line-clamp-1">
                       {pillar.desc}
                     </p>
                   </div>
@@ -133,14 +133,14 @@ export default function About() {
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all border border-emerald-800/60"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-900 hover:bg-emerald-850 text-white font-semibold text-sm shadow-md hover:shadow-lg transition-all"
               >
                 <span>{t('about.learnMore')}</span>
                 <ArrowRight className="w-4 h-4 rtl:rotate-180" />
               </Link>
               <Link
                 to="/courses"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sand-100 dark:bg-emerald-900/60 hover:bg-sand-200 dark:hover:bg-emerald-850 text-slate-800 dark:text-emerald-100 font-semibold text-sm transition-all border border-slate-200/60 dark:border-emerald-700/60"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-800 font-semibold text-sm transition-all"
               >
                 <span>{t('about.browseCourses')}</span>
               </Link>

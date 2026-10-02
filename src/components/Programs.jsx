@@ -125,23 +125,23 @@ export default function Programs() {
   };
 
   return (
-    <section className="py-20 bg-white dark:bg-[#032012] relative overflow-hidden transition-colors duration-150" id="programs-section">
+    <section className="py-20 bg-white relative overflow-hidden" id="programs-section">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/60 text-emerald-900 dark:text-emerald-200 text-xs font-semibold uppercase tracking-wider border border-emerald-200/40 dark:border-emerald-700/50">
-            <Sparkles className="w-3.5 h-3.5 text-gold-600 dark:text-gold-400 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-semibold uppercase tracking-wider">
+            <Sparkles className="w-3.5 h-3.5 text-gold-600 shrink-0" />
             <span>{t('programs.badge')}</span>
           </div>
 
-          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight font-serif">
+          <h2 className="text-2xl sm:text-4xl font-bold text-slate-900 tracking-tight font-serif">
             {t('programs.heading')}
           </h2>
 
           <IslamicDivider showArabic={false} />
 
-          <p className="text-sm sm:text-base text-slate-600 dark:text-emerald-100/80 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
             {t('programs.description')}
           </p>
         </div>
@@ -155,49 +155,49 @@ export default function Programs() {
             return (
               <div
                 key={rawProg.id}
-                className="group relative bg-sand-50/80 dark:bg-emerald-950/70 rounded-2xl p-6 sm:p-7 border border-slate-200 dark:border-emerald-800/60 hover:border-emerald-700/60 dark:hover:border-gold-500/50 shadow-soft-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between text-start"
+                className="group relative bg-sand-50/80 rounded-2xl p-6 sm:p-7 border border-slate-200 hover:border-emerald-700/60 shadow-soft-card hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between text-start"
               >
                 {/* Subtle top decoration */}
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-900 dark:bg-emerald-900/90 text-gold-400 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0 border border-gold-500/20">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-900 text-gold-400 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform shrink-0">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white dark:bg-emerald-900/80 border border-slate-200 dark:border-emerald-700/60 text-emerald-900 dark:text-gold-300">
+                  <span className="text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md bg-white border border-slate-200 text-emerald-900">
                     {program.badge}
                   </span>
                 </div>
 
                 <div className="mt-5 space-y-2.5">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-emerald-900 dark:group-hover:text-gold-300 transition-colors">
+                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-emerald-900 transition-colors">
                       {program.title}
                     </h3>
                   </div>
 
                   {i18n.language !== 'ar' && rawProg.arabicTitle && (
-                    <p className="text-xs text-gold-700 dark:text-gold-400 font-arabic">
+                    <p className="text-xs text-gold-700 font-arabic">
                       {rawProg.arabicTitle}
                     </p>
                   )}
 
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-emerald-200/75 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                     {program.shortDescription}
                   </p>
 
-                  <ul className="pt-2 space-y-1 text-xs text-slate-500 dark:text-emerald-300/70">
+                  <ul className="pt-2 space-y-1 text-xs text-slate-500">
                     {program.features.map((feat, idx) => (
                       <li key={idx} className="flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-700 dark:bg-gold-400 shrink-0" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-700 shrink-0" />
                         <span className="truncate">{feat}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-slate-200/80 dark:border-emerald-900/60">
+                <div className="mt-6 pt-4 border-t border-slate-200/80">
                   <Link
                     to={`/courses/${rawProg.targetSlug}`}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-900 dark:text-gold-300 group-hover:text-gold-700 dark:group-hover:text-gold-200 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-900 group-hover:text-gold-700 transition-colors"
                   >
                     <span>{t('programs.viewCurriculum')}</span>
                     <ArrowRight className="w-3.5 h-3.5 rtl:rotate-180 transition-transform" />

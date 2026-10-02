@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Menu, X, ArrowRight, MessageCircle, Sparkles, Globe, ChevronDown, Check, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowRight, MessageCircle, Sparkles, Globe, ChevronDown, Check } from 'lucide-react';
 import { foundationInfo } from '../data/foundationInfo';
 import { IslamicStarDeco } from './IslamicPattern';
-import ThemeToggle from './ThemeToggle';
 
 const languages = [
   { code: 'en', label: 'English', nativeName: 'English', flag: '🇬🇧', dir: 'ltr' },
@@ -135,8 +134,8 @@ export default function Navbar({ onOpenEnrollment }) {
               })}
             </nav>
 
-            {/* Desktop Right Controls (Language Selector + Theme Toggle + Enrollment CTA) */}
-            <div className="hidden lg:flex items-center gap-2 xl:gap-2.5">
+            {/* Desktop Right Controls (Language Selector + Enrollment CTA) */}
+            <div className="hidden lg:flex items-center gap-2.5 xl:gap-3">
               
               {/* Language Switcher Dropdown */}
               <div className="relative" ref={langDropdownRef}>
@@ -146,7 +145,7 @@ export default function Navbar({ onOpenEnrollment }) {
                   aria-expanded={isLangOpen}
                   aria-haspopup="true"
                   aria-label="Select Language"
-                  className="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-lg bg-emerald-900/80 hover:bg-emerald-850 text-emerald-100 hover:text-white border border-gold-500/30 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-gold-400/50"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-emerald-900/80 hover:bg-emerald-850 text-emerald-100 hover:text-white border border-gold-500/30 text-xs font-semibold shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-gold-400/50"
                 >
                   <Globe className="w-3.5 h-3.5 text-gold-400 shrink-0" />
                   <span>{currentLang.nativeName}</span>
@@ -184,9 +183,6 @@ export default function Navbar({ onOpenEnrollment }) {
                 )}
               </div>
 
-              {/* Theme Toggle Dropdown / Button */}
-              <ThemeToggle variant="dropdown" />
-
               {/* WhatsApp Direct Link */}
               <a
                 href={foundationInfo.whatsappUrl}
@@ -208,11 +204,8 @@ export default function Navbar({ onOpenEnrollment }) {
               </button>
             </div>
 
-            {/* Mobile Actions (Theme Toggle, Language Icon, Quick Enroll, Menu Button) */}
-            <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden">
-              {/* Quick Theme Switcher on Mobile Topbar */}
-              <ThemeToggle variant="button" />
-
+            {/* Mobile Actions (Language Icon, Quick Enroll, Menu Button) */}
+            <div className="flex items-center gap-2 lg:hidden">
               <button
                 type="button"
                 onClick={() => {
@@ -220,17 +213,17 @@ export default function Navbar({ onOpenEnrollment }) {
                   const nextIdx = (languages.findIndex(l => l.code === i18n.language) + 1) % languages.length;
                   handleLanguageChange(languages[nextIdx].code);
                 }}
-                className="px-2.5 py-2 rounded-lg bg-emerald-900/90 text-gold-300 border border-gold-500/30 text-xs font-bold flex items-center gap-1"
+                className="px-2.5 py-1.5 rounded-lg bg-emerald-900/90 text-gold-300 border border-gold-500/30 text-xs font-bold flex items-center gap-1"
                 aria-label="Switch Language"
                 title="Switch Language"
               >
-                <Globe className="w-3.5 h-3.5 text-gold-400" />
+                <Globe className="w-3 h-3 text-gold-400" />
                 <span>{currentLang.code.toUpperCase()}</span>
               </button>
 
               <button
                 onClick={onOpenEnrollment}
-                className="px-3 py-2 rounded-lg bg-gradient-to-r from-gold-500 to-amber-500 text-slate-950 font-bold text-xs shadow hover:scale-105 active:scale-95 transition-transform"
+                className="px-3 py-1.5 rounded-lg bg-gradient-to-r from-gold-500 to-amber-500 text-slate-950 font-bold text-xs shadow hover:scale-105 active:scale-95 transition-transform"
               >
                 {t('nav.enrollNow')}
               </button>
@@ -284,43 +277,31 @@ export default function Navbar({ onOpenEnrollment }) {
           {/* Navigation Links */}
           <div className="p-5 flex-1 space-y-2 overflow-y-auto bg-[#022412]">
             
-            {/* Language & Theme Selectors in Mobile Drawer */}
-            <div className="mb-5 space-y-3">
-              {/* Language Selector */}
-              <div className="p-3.5 rounded-2xl bg-emerald-950/90 border border-gold-500/30">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400 mb-2.5">
-                  <Globe className="w-3.5 h-3.5" />
-                  <span>{t('nav.language')}</span>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {languages.map((lang) => {
-                    const isSelected = lang.code === i18n.language;
-                    return (
-                      <button
-                        key={lang.code}
-                        type="button"
-                        onClick={() => handleLanguageChange(lang.code)}
-                        className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 ${
-                          isSelected
-                            ? 'bg-gold-500 text-slate-950 shadow-md scale-[1.02]'
-                            : 'bg-emerald-900/80 text-emerald-100 hover:bg-emerald-800'
-                        }`}
-                      >
-                        <span className="text-base">{lang.flag}</span>
-                        <span>{lang.nativeName}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+            {/* Language Selector in Mobile Drawer */}
+            <div className="mb-5 p-3.5 rounded-2xl bg-emerald-950/90 border border-gold-500/30">
+              <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400 mb-2.5">
+                <Globe className="w-3.5 h-3.5" />
+                <span>{t('nav.language')}</span>
               </div>
-
-              {/* Theme Selector */}
-              <div className="p-3.5 rounded-2xl bg-emerald-950/90 border border-gold-500/30">
-                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-400 mb-2.5">
-                  <Sun className="w-3.5 h-3.5" />
-                  <span>{t('nav.theme')}</span>
-                </div>
-                <ThemeToggle variant="segmented" />
+              <div className="grid grid-cols-3 gap-2">
+                {languages.map((lang) => {
+                  const isSelected = lang.code === i18n.language;
+                  return (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      onClick={() => handleLanguageChange(lang.code)}
+                      className={`py-2 px-2 rounded-xl text-xs font-bold transition-all flex flex-col items-center justify-center gap-1 ${
+                        isSelected
+                          ? 'bg-gold-500 text-slate-950 shadow-md scale-[1.02]'
+                          : 'bg-emerald-900/80 text-emerald-100 hover:bg-emerald-800'
+                      }`}
+                    >
+                      <span className="text-base">{lang.flag}</span>
+                      <span>{lang.nativeName}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 

@@ -112,15 +112,15 @@ export default function ContactPage() {
       <Contact />
 
       {/* Admissions FAQ Section */}
-      <section className="py-16 sm:py-20 bg-white dark:bg-[#02180d] border-t border-slate-200 dark:border-emerald-900/60 transition-colors duration-300">
+      <section className="py-16 sm:py-20 bg-white border-t border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           
           <div className="text-center space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white font-serif">
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 font-serif">
               {t('contact.faqHeading')}
             </h2>
             <IslamicDivider showArabic={false} />
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-xs sm:text-sm text-slate-600">
               {t('contact.faqSubheading')}
             </p>
           </div>
@@ -129,13 +129,13 @@ export default function ContactPage() {
             {contactFaqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-sand-50 dark:bg-[#032012] border border-slate-200/90 dark:border-emerald-800/80 space-y-2 text-start transition-colors"
+                className="p-6 rounded-2xl bg-sand-50 border border-slate-200/90 space-y-2 text-start"
               >
-                <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-start gap-2">
-                  <HelpCircle className="w-4 h-4 text-emerald-800 dark:text-gold-400 shrink-0 mt-0.5" />
+                <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2">
+                  <HelpCircle className="w-4 h-4 text-emerald-800 shrink-0 mt-0.5" />
                   <span>{faq.q}</span>
                 </h3>
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed ps-6">
+                <p className="text-xs text-slate-600 leading-relaxed ps-6">
                   {faq.a}
                 </p>
               </div>

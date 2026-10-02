@@ -55,26 +55,8 @@
       ]
     }
     </script>
-    <!-- Prevent Theme Flash Script -->
-    <script>
-      (function() {
-        try {
-          var savedTheme = localStorage.getItem('alKahfTheme');
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (savedTheme === 'dark' || (savedTheme === 'system' && prefersDark) || (!savedTheme && false)) {
-            document.documentElement.classList.add('dark');
-            document.documentElement.style.colorScheme = 'dark';
-            document.documentElement.setAttribute('data-theme', 'dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.style.colorScheme = 'light';
-            document.documentElement.setAttribute('data-theme', 'light');
-          }
-        } catch (e) {}
-      })();
-    </script>
   </head>
-  <body class="bg-sand-50 dark:bg-[#02180d] text-slate-800 dark:text-slate-100 antialiased font-sans selection:bg-emerald-800 selection:text-gold-300 transition-colors duration-150">
+  <body class="bg-sand-50 text-slate-800 antialiased font-sans selection:bg-emerald-800 selection:text-gold-300">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
